@@ -373,7 +373,7 @@ baidu_search:     ## http://zn.baidu.com/
 ```
 不蒜子的官方服务网站是[不蒜子](http://service.ibruce.info/)，目前最大的弊端就是不开放注册，所以对于运行了一段时间的网站，不蒜子的数据都是从1开始，没办法设置，只有等后期开放注册之后，登入网站才能对统计计数进行设置。
 
-### 参考链接
+## 参考链接
 
 [Hexo主页](https://hexo.io/)
 [hexo你的博客](http://ibruce.info/2013/11/22/hexo-your-blog/)
