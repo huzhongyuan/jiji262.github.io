@@ -1,4 +1,7 @@
 title: "手把手教你使用Hexo + Github Pages搭建个人独立博客"
+layout: post
+date: 2016-04-15 20:10
+comments: true
 tags: [Hexo, Github]
 
 ---
