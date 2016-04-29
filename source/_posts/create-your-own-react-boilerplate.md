@@ -1,29 +1,40 @@
 ---
 title: 手把手教你基于ES6架构自己的React Boilerplate项目
 layout: post
-date: 2016-4-21 20:10
+date: 2016-4-29 20:10
 comments: true
-tags: [前端]
+tags: [前端, webpack, react, karma, mocha, sinon]
 ---
 
 
 # 前言
 
-React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
+`React`技术之火爆无须多言，其与`webpack`的完美结合，也让二者毋庸置疑的成为天生一对。为了进行`React`的快速和规范化开发，开源社区中涌现了很多`React`+`webpack`的`boilerplate`项目。通过使用这些`boilerplate`，我们可以快速的创建一个React项目的架构。
 
-我专门创建了一个Github项目用于收集这些boilerplate：[awesome-react-boilerplate](http://jiji262.github.io/awesome-react-boilerplate/)。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。
+[葱哥](https://github.com/jiji262)之前专门创建了一个Github项目用于收集这些`boilerplate`：[awesome-react-boilerplate](http://jiji262.github.io/awesome-react-boilerplate/)。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。
 
-当然，由于每个人的使用习惯和技术背景的不同，每个boilerplate都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。笔者相信，只有适合自己的，才是最好的。这就是本文的初衷，笔者会追根溯源，从没有开发环境的蛮荒阶段开始，搭建开发环境，配置webpack，在React项目中使用webpack，搭建React项目的测试环境，一步一步构建适合自己的React + webpack起始项目。
+当然，由于每个人的使用习惯和技术背景的不同，每个`boilerplate`都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。[葱哥](https://github.com/jiji262)相信，只有适合自己的，才是最好的。这就是本文的初衷，[葱哥](https://github.com/jiji262)会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置`webpack`，在`React`项目中使用`webpack`，搭建项目的测试环境，一步一步构建适合适合自己的`React` + `webpack`起始项目。
+
+本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。当然，如果读后觉得对你有帮助，还请关注[葱哥的Github](https://github.com/jiji262)。
+
+TL;DR
 
 
 ### 将使用的技术栈
+
+如前所述，本文的主要目的是构建适合适合自己的`React` + `webpack`起始项目。与其他多数类似项目不同的是，我们不仅要支持ES6，使用webpack，而且要搭建一套相对完整的单元测试和自动化测试体系。本文主要使用到的相关技术如下：
 
 - React
 - webpack
 - babel
 - ES6
+- mocha
+- chai
+- sinon
+- karma
+- phantomJS
 
-
+<!--more-->
 
 # webpack快速入门
 
@@ -35,7 +46,7 @@ Webpack将项目中的所有静态资源都当做模块，模块之间可以互�
 
 ![web pack](http://webpack.github.io/assets/what-is-webpack.png)
 
-webpack对React有着与生俱来的支持，随着React的流行，webpack也成了React项目中必不可少的一部分。特别是随着ES6的普及，使得webpack有了更广阔的用武之地。
+webpack对React有着与生俱来的良好支持，随着React的流行，webpack也成了React项目中必不可少的一部分。特别是随着ES6的普及，使得webpack有了更广阔的用武之地。
 
 ## 安装配置webpack
 
@@ -52,7 +63,7 @@ $ mkdir react_boilerplate
 $ cd react_boilerplate\
 
 $ npm init -y
-Wrote to D:\node\react_boilerplate\package.json:
+Wrote to .\react_boilerplate\package.json:
 
 {
   "name": "react_boilerplate",
@@ -107,7 +118,7 @@ npm i webpack --save-dev
 
 安装完`webpack`后，我们可以给项目中增加一些内容了。项目的简单结构如下图所示：
 
-![](image here)
+![目录结构](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fq4VS1Pe2NGaTyUIkNKJCADwE-iy336.jpg)
 
 `app`目录用于存放项目代码，`dist`目录为编译后的项目文件，`webpack.config.js`为`webpack`的配置文件。
 
@@ -296,31 +307,35 @@ webpack: bundle is now VALID.
 ```
 
 web服务器启动完毕，此时访问 http://localhost:3000/ 就可以看到我们的“Hello world”了。
-![]()
+![hello world](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fg7Cmp52pR7rdmvgdzobkVRGD2d_524.jpg)
 
 需要特别说明的是，`webpack-dev-server`是支持热加载的，也就是说我们对代码的改动，保存的时候会自动更新页面。比如我们在文件中将“Hello world”改为“Linghucong”，会看到页面实时更新了，无须再按F5刷新，爽吧？！
-![]()
+![linghucong](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fp02wNcFcOPzZwNHB0QndYcFZ6b8336.jpg)
 
 `webpack-dev-server`的配置还可以放在`webpack.config.js`中，需要使用一个`devServer`属性，详细可以[参考官方文档](https://webpack.github.io/docs/webpack-dev-server.html)。
 
 ### 处理CSS样式
 
-项目中使用CSS是必不可少的。webpack中使用loader的方式来处理各种各样的资源，根据设定的规则，会找到相应的文件路径，然后使用各自的loader来处理。CSS文件也需要特定的loader，一般需要使用两个：`css-loader`和 `style-loader`，如果使用LESS或者SASS还需要加载对应的loader。这里我们使用LESS，因此安装loaders:
+项目中使用CSS是必不可少的。webpack中使用
+loader的方式来处理各种各样的资源，根据设定的规则，会找到相应的文件路径，然后使用各自的loader来处理。CSS文件也需要特定的loader，一般需要使用两个：`css-loader`和 `style-loader`，如果使用LESS或者SASS还需要加载对应的loader。这里我们使用LESS，因此安装loaders:
 
 ```
 npm install css-loader style-loader less-loader --save-dev
 ```
 
-踩坑提醒，npm3.0以上需要单独安装less：`npm install less --save-dev`。
+##### 踩坑提醒
+
+npm3.0以上需要单独安装less：`npm install less --save-dev`。
 
 然后在文件`webpack.config.js`中配置：
+
 ```
       {
         test: /\.less$/,
         loaders: ['style', 'css', 'less'],
         include: path.resolve(__dirname, 'app')
       }
-```      
+```
 
 可以看到，test里面包含一个正则，包含需要匹配的文件，loaders是一个数组，包含要处理这些文件的loaders，注意loaders的执行顺序是从右到左的。
 
@@ -338,7 +353,7 @@ require('./index.less');
 
 然后运行webpack进行编译：`npm run build`:
 ```
-$ npm rrun build
+$ npm run build
 
 > react_boilerplate@1.0.0 build D:\node\react_boilerplate
 > webpack
@@ -355,12 +370,12 @@ index.html  179 bytes          [emitted]
     + 78 hidden modules
 Child html-webpack-plugin for "index.html":
         + 3 hidden modules
-```  
+```
 
 可以看到， http://localhost:3000/ 页面上的文字已经变成绿色了。
-![]()
+![green](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fr2AQN-7eCUyPuWVoFQBiVuiSmEU814.jpg)
 
-到目前为止的代码可以在[react_boilerplate _v1]()中查看。
+到目前为止的代码可以在[react_boilerplate _v1](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1)中查看。
 
 # webpack 支持ES6
 
@@ -452,7 +467,7 @@ npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --sav
 
 此时我们运行`npm run build`，正常编译后，使用`npm run dev`，启动web服务器，打开 http://localhost:3000/ 可以看到页面已经可以正常显示了。
 
-**踩坑提醒**
+##### 踩坑提醒
 
 如果上面对于loader的配置写为（注意这里是`loaders`不是`loader`）：
 ```
@@ -478,7 +493,7 @@ D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:54
 
 Error: Cannot define 'query' and multiple loaders in loaders list
     at getLoadersFromObject (D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:54:65)
-    at LoadersList.<anonymous> (D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:78:12)
+    at LoadersList. (D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:78:12)
     at Array.map (native)
     at LoadersList.match 
     ...
@@ -493,7 +508,7 @@ loaders: ['other-loader', 'babel-loader?'+JSON.stringify(babelPresets)]
 ......
 ```
 
-到目前为止的代码可以在[react_boilerplate _v2]()中查看。
+到目前为止的代码可以在[react_boilerplate _v2](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v2)中查看。
 
 # 在项目中支持使用React
 
@@ -531,17 +546,17 @@ react_boilerplate@1.0.0 D:\node\react_boilerplate
 
 ##### templates/index.ejs
 ```
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-  <h3>Welcome to New Page</h3>
-  <div id="content"></div>
-  </body>
-</html>
+
+
+  
+    
+    <%= htmlWebpackPlugin.options.title %>
+  
+  
+  Welcome to New Page
+  
+  
+
 ```
 
 ### 修改 html-webpack-plugin 设置
@@ -558,6 +573,89 @@ react_boilerplate@1.0.0 D:\node\react_boilerplate
 ```
 
 关于 html-webpack-plugin 更多高级用法可以[参考其项目主页](https://github.com/ampedandwired/html-webpack-plugin)。
+
+### 支持sourcemap
+
+sourcemap的作用各位自行Google吧。要生成编译出的js文件的sourcemap文件，只需要在webpack配置文件中加入如下一行配置即可：
+```
+devtool: 'source-map',
+```
+
+运行`npm run build`可以看到一个会在`dist`目录生成一个新的文件`bundle.js.map`，这就是sourcemap文件。
+
+### Minification 代码压缩
+
+要对生成的js文件进行压缩，需要使用一个新的插件：UglifyJsPlugin。
+修改`webpack.config.js`如下：
+
+```
+......
+var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+
+var config = {
+......
+  plugins: [
+    ......
+    new UglifyJsPlugin({ minimize: true })
+  ]
+}
+
+module.exports = config;
+```
+运行`npm run build`可以看到生成的bundle.js文件已经被minify了。
+
+在实际的项目开发中，我们在开发阶段一般不需要将代码minify，因为压缩之后很不方便调试。因此，我们有必要将开发模式和发布模式区分开。我们通过设置`process.env.WEBPACK_ENV`来做区分。
+修改`webpack.config.js`如下：
+```
+......
+var env = process.env.WEBPACK_ENV;
+var outputFile;
+var plugins = [new HtmlwebpackPlugin({
+      title: 'React Biolerplate by Linghucong',
+      template: path.resolve(__dirname, 'templates/index.ejs'),
+      inject: 'body'
+    })];
+
+if (env === 'build') {
+  var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+  plugins.push(new UglifyJsPlugin({ minimize: true }));
+  outputFile = 'bundle.min.js';
+} else {  
+  outputFile = 'bundle.js';
+}
+
+var config = {
+......              
+  output: {
+    path: path.resolve(__dirname, 'dist'),  
+    filename: outputFile
+  },
+......
+  plugins: plugins
+}
+
+module.exports = config;
+```
+同时需要修改npm run的快捷方式，在`package.json`文件中修改如下：
+```
+  "scripts": {
+    "dev": "WEBPACK_ENV=dev webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+    "build": "WEBPACK_ENV=build webpack"
+  },
+```
+
+##### 踩坑提醒
+
+在Windows系统上不能像上述那样设置`WEBPACK_ENV`，可以使用`set`来设置，如下：
+
+```
+  "scripts": {
+    "test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm test -- --watch",
+    "dev": "set WEBPACK_ENV=dev&&webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
+    "build": "set WEBPACK_ENV=build&&webpack"
+  },
+```
 
 ### 更新项目代码
 
@@ -578,13 +676,13 @@ $ npm run dev
 ```
 
 可以看到，目前访问 http://localhost:3000/ 的页面显示已经发生了变化。
-![]()
+![linghucong](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FhsJFMi-612vNsHQhDgwt8abvfKB814.jpg)
 
 通过查看源代码，可以看到我们页面正是应用了我们的模板文件。
 
-![]()
+![source](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FryFP8lTIrAosvDBBFT5h5nznmuH814.jpg)
 
-到目前为止的代码可以在[react_boilerplate _v3]()中查看。
+到目前为止的代码可以在[react_boilerplate _v3](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v3)中查看。
 
 ## 创建React组件
 
@@ -597,11 +695,11 @@ import ReactDOM from 'react-dom';
  
 class HelloReact extends React.Component {
   render() {
-    return <h1>Hello React!</h1>
+    return Hello React!
   }
 }
  
-ReactDOM.render(<HelloReact/>, document.getElementById('content'));
+ReactDOM.render(, document.getElementById('content'));
 ```
 
 代码十分简单，引入了`react`和`react-dom`，创建了一个叫做HelloReact的组件，并将其渲染到页面上id为`content`的DOM元素内。
@@ -613,18 +711,19 @@ ReactDOM.render(<HelloReact/>, document.getElementById('content'));
 `npm run build`之后就可以在页面上看到“Hello React!”了。
 
 至此，我们基于ES6并使用webpack和Babel的React初始项目已经可以完美运行了。
-到目前为止的代码可以在[react_boilerplate _v4]()中查看。
+到目前为止的代码可以在[react_boilerplate _v4](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1)中查看。
 
-# 测试环境搭建（Mocha + Chai + Sinon + Enzyme）
+# 测试环境搭建（Mocha + Chai + Sinon）
 
 ## 所用技术介绍
 
-如上所见，我在这里使用Mocha + Chai + Sinon + Enzyme这几个技术来搭建我们的测试环境，简单介绍如下：
+如上所见，我在这里使用Mocha + Chai + Sinon 这几个技术来搭建我们的测试环境，简单介绍如下：
 
  - Mocha：用于运行我们的测试用例。  
  - Chai：Mocha用的断言库。 
  - Sinon：用于创建一些mocks/stubs/spys。
- - Enzyme：React代码测试专用，由AirBnB创建。
+ 
+ 另外值得一提的是，AirBnB创建了一个专门针对React代码测试的开源程序：Enzyme，有兴趣的可以研究一下。
 
 ## Mocha安装及环境配置
 
@@ -690,7 +789,7 @@ SyntaxError: Unexpected reserved word
     at Array.forEach (native)
     at Mocha.loadFiles (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\lib\mocha.js:216:14)
     at Mocha.run (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\lib\mocha.js:468:10)
-    at Object.<anonymous> (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\bin\_mocha:403:18)
+    at Object. (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\bin\_mocha:403:18)
     at Module._compile (module.js:409:26)
     at Object.Module._extensions..js (module.js:416:10)
     at Module.load (module.js:343:32)
@@ -769,16 +868,196 @@ npm run test
 
 注意这里我还新增加了一个`npm run test:watch`快捷方式，其实就是使用了mocha的`--watch`选项。有了它，当我们在对代码进行修改的时候，就会自动运行test了。
 
-## Enzyme的安装和使用
+到目前为止的代码可以在[react_boilerplate _v5](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1)中查看。
+
+# 使用Karma测试
+
+## karma安装与配置
+
+Karma是一个基于Node.js的前端测试启动器（Test Runner），它出自Google的Angularjs团队。该工具可用于测试所有主流Web浏览器，可以支持Chrome、Safari、Firefox、IE、Opera甚至PhantomJS。
+
+安装Karma：
+
+```
+npm install karma --save-dev
+```
+
+然后还需要安装我们需要用到的一些依赖库：
+```
+npm install lolex phantomjs-prebuilt phantomjs --save-dev
+
+npm install karma-chai karma-chai-plugins karma-chai-sinon karma-mocha karma-mocha-reporter karma-phantomjs-launcher karma-sinon karma-sinon-chai karma-sourcemap-loader karma-webpack --save-dev
+```
+
+##### 踩坑提醒
+
+不要问我为什么装那么多扩展，因为我踩过很多坑，这里就直接跳过了:<
+
+然后我们就可以使用karma命令来生成一个配置文件。
+
+```
+λ .\node_modules\.bin\karma.cmd init karma.conf.js
+
+Which testing framework do you want to use ?
+Press tab to list possible options. Enter to move to the next question.
+> mocha
+
+Do you want to use Require.js ?
+This will add Require.js plugin.
+Press tab to list possible options. Enter to move to the next question.
+> no
+
+Do you want to capture any browsers automatically ?
+Press tab to list possible options. Enter empty string to move to the next question.
+> PhantomJS
+> Chrome
+>
+
+What is the location of your source and test files ?
+You can use glob patterns, eg. "js/*.js" or "test/**/*Spec.js".
+Enter empty string to move to the next question.
+> app/*.js
+> test/*.spec.js
+>
+
+Should any of the files included by the previous patterns be excluded ?
+You can use glob patterns, eg. "**/*.swp".
+Enter empty string to move to the next question.
+>
+
+Do you want Karma to watch all the files and run the tests on change ?
+Press tab to list possible options.
+> yes
 
 
+Config file generated at "D:\node\react_boilerplate\karma.conf.js".
+```
 
+然后我们就可以使用`karma start`命令来运行我们的测试用例了。不过现在直接运行可能还有一些问题，暂时先不管。
 
+## 优化Karma配置文件
+
+我们使用一个单独的文件`test.webpack.js`来保存测试文件的路径，方便在karma设置中进行预处理。新建文件`test.webpack.js`如下：
+
+```
+function requireAll(requireContext) {
+  return requireContext.keys().map(requireContext);
+}
+
+var modules = requireAll(require.context("./test", true, /.+\.spec\.jsx?$/));
+
+module.exports = modules
+```
+然后修改`karma.config.js`:
+```
+var webpackConfig = require('./webpack.config');
+webpackConfig.devtool = 'inline-source-map';
+
+module.exports = function (config) {
+  config.set({
+    browsers: [ 'PhantomJS' ],
+    singleRun: true,
+    frameworks: [ 'mocha', 'chai', 'sinon', 'sinon-chai' ],
+    files: [
+      'test.webpack.js'
+    ],
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
+      'karma-chai',
+      'karma-mocha',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+      'karma-mocha-reporter',
+      'karma-sinon',
+      'karma-sinon-chai'
+    ],
+    preprocessors: {
+      'test.webpack.js': [ 'webpack', 'sourcemap' ]
+    },
+    reporters: [ 'mocha' ],
+    webpack: webpackConfig,
+    webpackServer: {
+      noInfo: true
+    },
+    autoWatch: true
+  });
+};
+```
+## 运行Karma
+
+好了，到现在为止，我们可以正常运行我们的测试用例了。使用命令`karma start`运行结果如下：
+
+```
+$ karma start
+
+START:
+29 04 2016 13:26:50.350:INFO [karma]: Karma v0.13.22 server started at http://localhost:9876/
+29 04 2016 13:26:50.375:INFO [launcher]: Starting browser PhantomJS
+29 04 2016 13:26:52.072:INFO [PhantomJS 2.1.1 (Windows 8 0.0.0)]: Connected on socket /#05AECTTMgBTkXK4kAAAA with id 76498752
+  hello react spec
+    √ works!!!
+
+Finished in 0.008 secs / 0.001 secs
+
+SUMMARY:
+√ 1 test completed
+```
+可以看到，测试用例测试通过了。
+
+目前我们在karma的配置文件中设置的浏览器类型是“browsers: [ 'PhantomJS' ]”，也就是会使用PhantomJS来运行。如果需要使用其他浏览器，可以做相应修改，甚至添加多个。比如我们要支持打开Chrome浏览器运行测试，修改如下：
+```
+browsers: [ 'Chrome' ]
+```
+正常运作的前提是，必须事先安装好了对应的插件，对应Chrome的就是'karma-chrome-launcher'，其他浏览器类型类似处理。
+
+## 添加karma快捷方式到npm
+
+我们之前使用`npm run test`来运行测试，`npm run test:watch`来监听文件改变并运行测试。使用karma之后，需要在`package.json`中作如下修改：
+```
+  "scripts": {
+    "test": "karma start",
+    "test:watch": "watch \"npm run test\" app/",
+    ......
+  }
+```
+另外需要安装一个npm包：
+```
+npm install watch --save-dev
+```
+
+这样我们就可以使用`npm run test`来运行测试，`npm run test:watch`来监听文件改变并自动运行测试了：
+
+![karma](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fo8y7n8p4qhOi9Bq0gf3pXE-xrJQ87.jpg)
+
+到目前为止我们自己的react boilerplate已经创建完毕了！代码可以在[react_boilerplate _v6](https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v6)中查看。
+
+# 后记
+
+本文带你一步步建立了自己的react boilerplate项目，但是需要知道的是，文中所述甚浅，只是带你入门罢了。其中每一个话题，都可以展开来再写一系列的文章。比如测试所用的mocha+chai+sinon套装，比如React测试利器Enzyme等。即便是文中已经成型的代码，亦多有可优化的地方。如果你有好的意见或者建议，也欢迎到这个Github repo上来提pull request或者issue：
+
+[https://github.com/jiji262/react_boilerplate](https://github.com/jiji262/react_boilerplate)
+
+最后，感谢阅读。
 
 # 参考链接
-http://blog.david-reid.com/2016/02/07/webpack-dev-server/
-[深入浅出React](http://www.infoq.com/cn/dive-into-react)
-[Webpack傻瓜式指南](http://zhuanlan.zhihu.com/p/20367175)
+
+[Webpack Dev Server](http://blog.david-reid.com/2016/02/07/webpack-dev-server/)
+
+[Building Your First React.js App](https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98dc#.8bo5cmbs9)
+
+[Building modular javascript applications in ES6 with React, Webpack and Babel](https://medium.com/@yamalight/building-modular-javascript-applications-in-es6-with-react-webpack-and-babel-538189cd485f)
+
+[A Modern Isomorphic Stack](https://medium.com/@MoBinni/a-modern-isomorphic-stack-6609c7c9d057)
+
+[STATIC SITE GENERATION WITH REACT AND WEBPACK](http://jxnblk.com/writing/posts/static-site-generation-with-react-and-webpack/)
+
+[LEARN REACT.JS A LITTLE AT A TIME, PART 1](http://smashingboxes.com/blog/learn-react-part-1)
+
 [Setting up React for ES6 with Webpack and Babel](https://www.twilio.com/blog/2015/08/setting-up-react-for-es6-with-webpack-and-babel-2.html)
+
 [Mocha + Chai.js unit testing for ES6 with Istanbul code coverage](https://onsen.io/blog/mocha-chaijs-unit-test-coverage-es6/)
+
 [davezuko/react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit)
+
+[awesome-react-boilerplate](https://github.com/jiji262/awesome-react-boilerplate)

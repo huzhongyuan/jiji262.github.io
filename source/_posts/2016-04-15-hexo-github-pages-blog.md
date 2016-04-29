@@ -56,6 +56,7 @@ $ hexo s -g #生成预览
 现在我们打开http://localhost:4000/ 已经可以看到一篇内置的blog了。
 ![](http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/15/FgBbsEvswR84bkwXSjIRBne9bX9q648.jpg)
 
+<!--more-->
 
 目前我安装所用的本地环境如下：(可以通过hexo -v查看)
 
@@ -353,7 +354,7 @@ widgets:
 </center>
 <br/>
 ```
-`<center>`可以让图片居中显示，注意将图片链接地址换成你的即可。
+``可以让图片居中显示，注意将图片链接地址换成你的即可。
 
 
 #### 添加百度站内搜索
@@ -370,7 +371,7 @@ baidu_search:     ## http://zn.baidu.com/
 ```javascript
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 ```
-然后在`<p class="copyright"></p>`中间添加如下统计信息即可
+然后在``中间添加如下统计信息即可
 ```html
 本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次, 本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次
 ```
