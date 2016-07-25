@@ -6,6 +6,10 @@ tags: [Hexo, Github]
 
 ---
 
+## **Update**
+
+Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：[create-react-app](https://github.com/facebookincubator/create-react-app)
+
 ## 系统环境配置
 
 要使用Hexo，需要在你的系统中支持Nodejs以及Git，如果还没有，那就开始安装吧！
