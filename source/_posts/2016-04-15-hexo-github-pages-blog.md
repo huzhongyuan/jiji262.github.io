@@ -8,7 +8,7 @@ tags: [Hexo, Github]
 
 ## **Update**
 
-Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：[create-react-app](https://github.com/facebookincubator/create-react-app)
+* [20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：[create-react-app](https://github.com/facebookincubator/create-react-app)
 
 ## 系统环境配置
 
