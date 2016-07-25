@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>手把手教你基于ES6架构自己的React Boilerplate项目 | My Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
+葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教你基于ES6架构自己的React Boilerplate项目">
+<meta property="og:url" content="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
+葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+<meta property="og:image" content="http://webpack.github.io/assets/what-is-webpack.png">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fq4VS1Pe2NGaTyUIkNKJCADwE-iy336.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fg7Cmp52pR7rdmvgdzobkVRGD2d_524.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fp02wNcFcOPzZwNHB0QndYcFZ6b8336.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fr2AQN-7eCUyPuWVoFQBiVuiSmEU814.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FhsJFMi-612vNsHQhDgwt8abvfKB814.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FryFP8lTIrAosvDBBFT5h5nznmuH814.jpg">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fo8y7n8p4qhOi9Bq0gf3pXE-xrJQ87.jpg">
+<meta property="og:updated_time" content="2016-07-25T09:44:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手把手教你基于ES6架构自己的React Boilerplate项目">
+<meta name="twitter:description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
+葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+<meta name="twitter:image" content="http://webpack.github.io/assets/what-is-webpack.png">
+  
+    <link rel="alternative" href="/atom.xml" title="My Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">令狐葱</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/karma/" style="font-size: 10px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 10px;">前端基础</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">令狐葱</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">令狐葱</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-create-your-own-react-boilerplate" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/29/create-your-own-react-boilerplate/" class="article-date">
+  	<time datetime="2016-04-29T12:10:00.000Z" itemprop="datePublished">2016-04-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手把手教你基于ES6架构自己的React Boilerplate项目
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mocha/">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sinon/">sinon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
+<p><a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>之前专门创建了一个Github项目用于收集这些<code>boilerplate</code>：<a href="http://jiji262.github.io/awesome-react-boilerplate/">awesome-react-boilerplate</a>。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。</p>
+<p>当然，由于每个人的使用习惯和技术背景的不同，每个<code>boilerplate</code>都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>相信，只有适合自己的，才是最好的。这就是本文的初衷，<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置<code>webpack</code>，在<code>React</code>项目中使用<code>webpack</code>，搭建项目的测试环境，一步一步构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。</p>
+<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥的Github</a>。</p>
+<p>TL;DR</p>
+<h3 id="将使用的技术栈"><a href="#将使用的技术栈" class="headerlink" title="将使用的技术栈"></a>将使用的技术栈</h3><p>如前所述，本文的主要目的是构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。与其他多数类似项目不同的是，我们不仅要支持ES6，使用webpack，而且要搭建一套相对完整的单元测试和自动化测试体系。本文主要使用到的相关技术如下：</p>
+<ul>
+<li>React</li>
+<li>webpack</li>
+<li>babel</li>
+<li>ES6</li>
+<li>mocha</li>
+<li>chai</li>
+<li>sinon</li>
+<li>karma</li>
+<li>phantomJS</li>
+</ul>
+<a id="more"></a>
+<h1 id="webpack快速入门"><a href="#webpack快速入门" class="headerlink" title="webpack快速入门"></a>webpack快速入门</h1><h2 id="webpack介绍"><a href="#webpack介绍" class="headerlink" title="webpack介绍"></a>webpack介绍</h2><p>Webpack是一个前端模块管理工具，有点类似browserify，出自Facebook的Instagram团队，但功能比browserify更为强大，可以说是目前最为强大的前端模块管理和打包工具。</p>
+<p>Webpack将项目中的所有静态资源都当做模块，模块之间可以互相依赖，由webpack对它们进行统一的管理和打包发布，下图为官方网站说明：</p>
+<p><img src="http://webpack.github.io/assets/what-is-webpack.png" alt="web pack"></p>
+<p>webpack对React有着与生俱来的良好支持，随着React的流行，webpack也成了React项目中必不可少的一部分。特别是随着ES6的普及，使得webpack有了更广阔的用武之地。</p>
+<h2 id="安装配置webpack"><a href="#安装配置webpack" class="headerlink" title="安装配置webpack"></a>安装配置webpack</h2><h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><p>安装webpack之前，需要确认本机已经安装好了nodejs。</p>
+<p>如果还没有安装，请去<a href="https://nodejs.org" target="_blank" rel="external">nodejs官网</a>下载安装即可。这里使用的node版本是V4.4.1.</p>
+<h3 id="初始化项目环境"><a href="#初始化项目环境" class="headerlink" title="初始化项目环境"></a>初始化项目环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">$ mkdir react_boilerplate</div><div class="line">$ cd react_boilerplate\</div><div class="line"></div><div class="line">$ npm init -y</div><div class="line">Wrote to .\react_boilerplate\package.json:</div><div class="line"></div><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;react_boilerplate&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;&quot;,</div><div class="line">  &quot;main&quot;: &quot;index.js&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;keywords&quot;: [],</div><div class="line">  &quot;author&quot;: &quot;&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>npm init</code> 加上一个<code>-y</code>选项会生成一个默认的<code>package.json</code>,关于这个文件，不是本文重点，在此不会详述，可以参考<a href="https://docs.npmjs.com/files/package.json" target="_blank" rel="external">官方文档</a>。可以简单的理解，这个文件是用于管理项目里面的依赖包的。</p>
+<h3 id="设置-gitignore"><a href="#设置-gitignore" class="headerlink" title="设置.gitignore"></a>设置.gitignore</h3><p>如果我们使用git进行版本管理，一个.gitignore文件是必要的。这里我们可以先将项目需要安装的node包目录添加进去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules</div></pre></td></tr></table></figure>
+<p>使用<code>npm install</code>安装的node包都会在<code>node_modules</code>目录下，这个目录是不需要commit到git的。</p>
+<h3 id="安装webpack"><a href="#安装webpack" class="headerlink" title="安装webpack"></a>安装webpack</h3><p>安装webpack很简单，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i webpack --save-dev</div></pre></td></tr></table></figure>
+<p>其中<code>--save-dev</code>表示该包为开发环境依赖包。安装完后会生成一个<code>node_modules</code>目录，并且在<code>package.json</code>文件中多出如下几行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">  &quot;devDependencies&quot;: &#123;</div><div class="line">    &quot;webpack&quot;: &quot;^1.13.0&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果写为<code>--save</code>则表示该包为生产环境依赖包，在<code>package.json</code>文件中会新增或者修改<code>dependencies</code> 字段。</p>
+<h3 id="初始化项目结构和代码"><a href="#初始化项目结构和代码" class="headerlink" title="初始化项目结构和代码"></a>初始化项目结构和代码</h3><p>安装完<code>webpack</code>后，我们可以给项目中增加一些内容了。项目的简单结构如下图所示：</p>
+<p><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fq4VS1Pe2NGaTyUIkNKJCADwE-iy336.jpg" alt="目录结构"></p>
+<p><code>app</code>目录用于存放项目代码，<code>dist</code>目录为编译后的项目文件，<code>webpack.config.js</code>为<code>webpack</code>的配置文件。</p>
+<p>我们给项目中的文件添加一些简单的代码，首先是组件代码：</p>
+<h5 id="app-component-js"><a href="#app-component-js" class="headerlink" title="app/component.js"></a>app/component.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = function () &#123;</div><div class="line">  var element = document.createElement(&apos;h1&apos;);</div><div class="line"></div><div class="line">  element.innerHTML = &apos;Hello world&apos;;</div><div class="line"></div><div class="line">  return element;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>然后需要一个入口文件，在入口文件中使用上面定义的组件：</p>
+<h5 id="app-index-js"><a href="#app-index-js" class="headerlink" title="app/index.js"></a>app/index.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var component = require(&apos;./component&apos;);</div><div class="line"></div><div class="line">document.body.appendChild(component());</div></pre></td></tr></table></figure>
+<h3 id="配置webpack"><a href="#配置webpack" class="headerlink" title="配置webpack"></a>配置webpack</h3><p>我们需要让webpack知道如何处理我们的项目目录结构，因此需要配置文件<code>webpack.config.js</code>。一个简单的配置文件如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&apos;webpack&apos;); </div><div class="line">var path = require(&apos;path&apos;);                 //引入node的path库</div><div class="line"></div><div class="line">var config = &#123;</div><div class="line">  entry: [&apos;./app/index.js&apos;],                //入口文件</div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, &apos;dist&apos;),  // 指定编译后的代码位置为 dist/bundle.js</div><div class="line">    filename: &apos;bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  module: &#123;</div><div class="line">    loaders: [</div><div class="line">      // 为webpack指定loaders</div><div class="line">      //&#123; test: /\.js$/, loaders: [&apos;babel&apos;], exclude: /node_modules/ &#125;   </div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<p>到目前为止，我们已经可以让webpack工作了，在命令行执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack</div></pre></td></tr></table></figure>
+<p>我们看到，会有一个新的文件<code>/dist/bundle.js</code>生成出来了。但是我们还需要一个html文件来加载编译后的代码，这就需要用到一个webpack插件：<code>html-webpack-plugin</code>。</p>
+<h3 id="安装html-webpack-plugin"><a href="#安装html-webpack-plugin" class="headerlink" title="安装html-webpack-plugin"></a>安装<code>html-webpack-plugin</code></h3><p>使用如下命令安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install html-webpack-plugin --save-dev</div></pre></td></tr></table></figure>
+<p>然后在我们的<code>webpack.config.js</code>中增加下面几行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  new HtmlwebpackPlugin(&#123;</div><div class="line">    title: &apos;React Biolerplate by Linghucong&apos;</div><div class="line">  &#125;)</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>现在在命令行下再次执行<code>webpack</code>命令，会看到在<code>dist</code>目录下生成了两个文件：<code>bundle.js</code>和<code>index.html</code>。其中<code>index.html</code>内容如下：</p>
+<h5 id="dist-index-html"><a href="#dist-index-html" class="headerlink" title="dist/index.html"></a>dist/index.html</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">    &lt;title&gt;React Biolerplate by Linghucong&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">  &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>有必要提一下，如果我们安装webpack的时候使用的是全局安装选项（<code>npm install -g webpack</code>），可以在命令行中直接执行<code>webpack</code>命令；如果没有使用<code>-g</code>，那么要用的<code>webpack</code>可执行文件位于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack</div></pre></td></tr></table></figure></p>
+<p>我们可以在<code>package.json</code>中为此命令增加一个快捷方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># package.json</div><div class="line">... other stuff</div><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;build&quot;: &quot;./node_modules/.bin/webpack&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在就可以直接使用命令<code>npm run build</code>来执行webpack了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div><div class="line"></div><div class="line">&gt; react_boilerplate@1.0.0 build D:\node\react_boilerplate</div><div class="line">&gt; webpack</div><div class="line"></div><div class="line">Hash: cbf754a65493b4d791d7</div><div class="line">Version: webpack 1.13.0</div><div class="line">Time: 919ms</div><div class="line">     Asset       Size  Chunks             Chunk Names</div><div class="line"> bundle.js     233 kB       0  [emitted]  main</div><div class="line">index.html  179 bytes          [emitted]</div><div class="line">   [0] multi main 52 bytes &#123;0&#125; [built]</div><div class="line">  [75] ./app/index.js 82 bytes &#123;0&#125; [built]</div><div class="line">  [76] ./app/component.js 142 bytes &#123;0&#125; [built]</div><div class="line">    + 74 hidden modules</div><div class="line">Child html-webpack-plugin for &quot;index.html&quot;:</div><div class="line">        + 3 hidden modules</div></pre></td></tr></table></figure>
+<h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装<code>webpack-dev-server</code></h3><p><code>webpack-dev-server</code>可以让我们在本地启动一个web服务器，使我们更方便的查看正在开发的项目。其安装也十分简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+<p>然后在<code>webpack.config.js</code>文件中作如下修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># webpack.config.js</div><div class="line"># ...</div><div class="line">  entry: [</div><div class="line">    &apos;webpack/hot/dev-server&apos;,</div><div class="line">    &apos;webpack-dev-server/client?http://localhost:3000&apos;,</div><div class="line">    &apos;./app/index.js&apos;      //入口文件</div><div class="line">    ],  </div><div class="line"># ...</div></pre></td></tr></table></figure></p>
+<p>我们可以在<code>package.json</code>中增加<code>webpack-dev-server</code>的快捷方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># package.json</div><div class="line">... other stuff</div><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;dev&quot;: &quot;webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist&quot;,</div><div class="line">  &quot;build&quot;: &quot;./node_modules/.bin/webpack&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置中指定web服务器端口号为3000，指定目录为dist。<br>运行<code>npm run dev</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ npm run dev</div><div class="line"></div><div class="line">&gt; react_boilerplate@1.0.0 dev D:\node\react_boilerplate</div><div class="line">&gt; webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist</div><div class="line"></div><div class="line">......</div><div class="line">Time: 1109ms</div><div class="line">     Asset       Size  Chunks             Chunk Names</div><div class="line"> bundle.js     274 kB       0  [emitted]  main</div><div class="line">index.html  179 bytes          [emitted]</div><div class="line">chunk    &#123;0&#125; bundle.js (main) 216 kB [rendered]</div><div class="line">    [0] multi main 52 bytes &#123;0&#125; [built]</div><div class="line"> ......</div><div class="line"> ......</div><div class="line"> ......</div><div class="line">   [77] ./app/component.js 142 bytes &#123;0&#125; [built]</div><div class="line">Child html-webpack-plugin for &quot;index.html&quot;:</div><div class="line">    chunk    &#123;0&#125; index.html 505 kB [rendered]</div><div class="line">        [0] ./~/html-webpack-plugin/lib/loader.js!./~/html-webpack-plugin/default_index.ejs 540 bytes &#123;0&#125; [buil</div><div class="line">t]</div><div class="line">        [1] ./~/lodash/lodash.js 504 kB &#123;0&#125; [built]</div><div class="line">        [2] (webpack)/buildin/module.js 251 bytes &#123;0&#125; [built]</div><div class="line">webpack: bundle is now VALID.</div></pre></td></tr></table></figure></p>
+<p>web服务器启动完毕，此时访问 <a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a> 就可以看到我们的“Hello world”了。<br><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fg7Cmp52pR7rdmvgdzobkVRGD2d_524.jpg" alt="hello world"></p>
+<p>需要特别说明的是，<code>webpack-dev-server</code>是支持热加载的，也就是说我们对代码的改动，保存的时候会自动更新页面。比如我们在文件中将“Hello world”改为“Linghucong”，会看到页面实时更新了，无须再按F5刷新，爽吧？！<br><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fp02wNcFcOPzZwNHB0QndYcFZ6b8336.jpg" alt="linghucong"></p>
+<p><code>webpack-dev-server</code>的配置还可以放在<code>webpack.config.js</code>中，需要使用一个<code>devServer</code>属性，详细可以<a href="https://webpack.github.io/docs/webpack-dev-server.html" target="_blank" rel="external">参考官方文档</a>。</p>
+<h3 id="处理CSS样式"><a href="#处理CSS样式" class="headerlink" title="处理CSS样式"></a>处理CSS样式</h3><p>项目中使用CSS是必不可少的。webpack中使用<br>loader的方式来处理各种各样的资源，根据设定的规则，会找到相应的文件路径，然后使用各自的loader来处理。CSS文件也需要特定的loader，一般需要使用两个：<code>css-loader</code>和 <code>style-loader</code>，如果使用LESS或者SASS还需要加载对应的loader。这里我们使用LESS，因此安装loaders:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader less-loader --save-dev</div></pre></td></tr></table></figure>
+<h5 id="踩坑提醒"><a href="#踩坑提醒" class="headerlink" title="踩坑提醒"></a>踩坑提醒</h5><p>npm3.0以上需要单独安装less：<code>npm install less --save-dev</code>。</p>
+<p>然后在文件<code>webpack.config.js</code>中配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  test: /\.less$/,</div><div class="line">  loaders: [&apos;style&apos;, &apos;css&apos;, &apos;less&apos;],</div><div class="line">  include: path.resolve(__dirname, &apos;app&apos;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以看到，test里面包含一个正则，包含需要匹配的文件，loaders是一个数组，包含要处理这些文件的loaders，注意loaders的执行顺序是从右到左的。</p>
+<p>新建一个LESS文件<code>/app/index.less</code>，其内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">h1 &#123;</div><div class="line">    color: green;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在入口文件<code>index.js</code>中引入这个文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&apos;./index.less&apos;);</div></pre></td></tr></table></figure></p>
+<p>然后运行webpack进行编译：<code>npm run build</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div><div class="line"></div><div class="line">&gt; react_boilerplate@1.0.0 build D:\node\react_boilerplate</div><div class="line">&gt; webpack</div><div class="line"></div><div class="line">Hash: 0c25c4bacdc334db1e04</div><div class="line">Version: webpack 1.13.0</div><div class="line">Time: 1902ms</div><div class="line">     Asset       Size  Chunks             Chunk Names</div><div class="line"> bundle.js     243 kB       0  [emitted]  main</div><div class="line">index.html  179 bytes          [emitted]</div><div class="line">   [0] multi main 52 bytes &#123;0&#125; [built]</div><div class="line">  [75] ./app/index.js 110 bytes &#123;0&#125; [built]</div><div class="line">  [80] ./app/component.js 141 bytes &#123;0&#125; [built]</div><div class="line">    + 78 hidden modules</div><div class="line">Child html-webpack-plugin for &quot;index.html&quot;:</div><div class="line">        + 3 hidden modules</div></pre></td></tr></table></figure></p>
+<p>可以看到， <a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a> 页面上的文字已经变成绿色了。<br><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fr2AQN-7eCUyPuWVoFQBiVuiSmEU814.jpg" alt="green"></p>
+<p>到目前为止的代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1" target="_blank" rel="external">react_boilerplate _v1</a>中查看。</p>
+<h1 id="webpack-支持ES6"><a href="#webpack-支持ES6" class="headerlink" title="webpack 支持ES6"></a>webpack 支持ES6</h1><h2 id="Javascript包管理格式"><a href="#Javascript包管理格式" class="headerlink" title="Javascript包管理格式"></a>Javascript包管理格式</h2><p>Javascript中的包管理比较常见的有几种方式：</p>
+<h4 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//CommonJS 定义的是模块的同步加载，主要用于NodeJS</div><div class="line"></div><div class="line">var MyModule = require(&apos;./MyModule&apos;);</div><div class="line"></div><div class="line">// export at module root</div><div class="line">module.exports = function() &#123; ... &#125;;</div><div class="line"></div><div class="line">// alternatively, export individual functions</div><div class="line">exports.hello = function() &#123;...&#125;;</div></pre></td></tr></table></figure>
+<h4 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//AMD 是异步加载，比如require.js使用这种规范</div><div class="line">define([&apos;./MyModule.js&apos;], function (MyModule) &#123;</div><div class="line">  // export at module root</div><div class="line">  return function() &#123;&#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// or</div><div class="line">define([&apos;./MyModule.js&apos;], function (MyModule) &#123;</div><div class="line">  // export as module function</div><div class="line">  return &#123;</div><div class="line">    hello: function() &#123;...&#125;</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//ES6 变得越来越主流了</div><div class="line"></div><div class="line">import MyModule from &apos;./MyModule.js&apos;;</div><div class="line"></div><div class="line">// export at module root</div><div class="line">export default function () &#123; ... &#125;;</div><div class="line"></div><div class="line">// or export as module function,</div><div class="line">// you can have multiple of these per module</div><div class="line">export function hello() &#123;...&#125;;</div></pre></td></tr></table></figure>
+<p>还有其他格式如UMD、CMD等，在此不再一一介绍。webpack对这些模块格式都可以很好的支持。在我们之前的项目中使用的是CommonJS格式的模块管理，但是随着ES6的普及和应用，同时得益于强大的<a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>的存在，使我们可以方便的使用ES6的语法，而不必考虑浏览器支持的问题。</p>
+<h2 id="webpack支持ES6语法"><a href="#webpack支持ES6语法" class="headerlink" title="webpack支持ES6语法"></a>webpack支持ES6语法</h2><p>在webpack中支持ES6同样只需要安装配置相应的loader就可以了。</p>
+<p>安装如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --save-dev</div></pre></td></tr></table></figure>
+<p>在<code>webpack.config.js</code>中添加loader如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  test: /\.jsx?$/, </div><div class="line">  loader: &apos;babel&apos;, </div><div class="line">  exclude: /node_modules/,</div><div class="line">  query: &#123;</div><div class="line">    presets: [&apos;react&apos;, &apos;es2015&apos;] </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于后边需要支持React的jsx文件，所以我们在这里安装了<code>babel-preset-react</code>。</p>
+<p>顺便提一下，我们可以在项目根目录下创建一个<code>.babelrc</code>文件，将loader中的<code>presets</code>放在文件<code>.babelrc</code>中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># .babelrc</div><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [&quot;react&quot;, &quot;es2015&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此时我们运行<code>npm run build</code>，正常编译后，使用<code>npm run dev</code>，启动web服务器，打开 <a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a> 可以看到页面已经可以正常显示了。</p>
+<h5 id="踩坑提醒-1"><a href="#踩坑提醒-1" class="headerlink" title="踩坑提醒"></a>踩坑提醒</h5><p>如果上面对于loader的配置写为（注意这里是<code>loaders</code>不是<code>loader</code>）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">    test: /\.jsx?$/, </div><div class="line">    loaders: [&apos;babel&apos;], </div><div class="line">    exclude: /node_modules/,</div><div class="line">    query: &#123;</div><div class="line">      presets: [&apos;es2015&apos;, &apos;react&apos;] </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>则可能会出现这样的错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div><div class="line"></div><div class="line">&gt; react_boilerplate@1.0.0 build D:\node\react_boilerplate</div><div class="line">&gt; webpack</div><div class="line"></div><div class="line">D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:54</div><div class="line">                if(!element.loader || element.loader.indexOf(&quot;!&quot;) &gt;= 0) throw new Error(&quot;Cannot define &apos;query&apos; and multiple loaders in loaders list&quot;);</div><div class="line">                                                                        ^</div><div class="line"></div><div class="line">Error: Cannot define &apos;query&apos; and multiple loaders in loaders list</div><div class="line">    at getLoadersFromObject (D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:54:65)</div><div class="line">    at LoadersList. (D:\node\react_boilerplate\node_modules\webpack-core\lib\LoadersList.js:78:12)</div><div class="line">    at Array.map (native)</div><div class="line">    at LoadersList.match </div><div class="line">    ...</div></pre></td></tr></table></figure></p>
+<p>原因是使用了多个<code>loader</code>，而<code>query</code>仅仅作用于<code>babel-loader</code>。如果非要使用<code>loaders</code>加载多个<code>loader</code>，可以做如下修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var babelPresets = &#123;presets: [&apos;react&apos;, &apos;es2015&apos;]&#125;;</div><div class="line">......</div><div class="line">loaders: [&apos;other-loader&apos;, &apos;babel-loader?&apos;+JSON.stringify(babelPresets)]</div><div class="line">......</div></pre></td></tr></table></figure></p>
+<p>到目前为止的代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v2" target="_blank" rel="external">react_boilerplate _v2</a>中查看。</p>
+<h1 id="在项目中支持使用React"><a href="#在项目中支持使用React" class="headerlink" title="在项目中支持使用React"></a>在项目中支持使用React</h1><p>关于React的介绍和基本概念相信你已经有所了解，如果需要，可以参考本文最后的“参考阅读”中的链接，在此不再详述。</p>
+<h2 id="安装React"><a href="#安装React" class="headerlink" title="安装React"></a>安装React</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react react-dom --save</div></pre></td></tr></table></figure>
+<p>这里我们使用的版本是15.0.1。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ npm install react react-dom --save</div><div class="line">react_boilerplate@1.0.0 D:\node\react_boilerplate</div><div class="line">+-- react@15.0.1</div><div class="line">| `-- fbjs@0.8.1</div><div class="line">|   +-- isomorphic-fetch@2.2.1</div><div class="line">|   | +-- node-fetch@1.5.1</div><div class="line">|   | | +-- encoding@0.1.12</div><div class="line">|   | | | `-- iconv-lite@0.4.13</div><div class="line">|   | | `-- is-stream@1.1.0</div><div class="line">|   | `-- whatwg-fetch@0.11.0</div><div class="line">|   `-- ua-parser-js@0.7.10</div><div class="line">`-- react-dom@15.0.1</div></pre></td></tr></table></figure></p>
+<h2 id="改造项目结构"><a href="#改造项目结构" class="headerlink" title="改造项目结构"></a>改造项目结构</h2><p>在项目中我们使用了html-webpack-plugin插件来用webpack自动生成入口的index.html文件，但是里面的内容我们没法控制。html-webpack-plugin提供了一种模板的机制，可以让我们对生成的文件内容进行定制。</p>
+<h3 id="创建模板文件"><a href="#创建模板文件" class="headerlink" title="创建模板文件"></a>创建模板文件</h3><p>我们使用一个新的目录templates用于存放模板文件，新建一个index.ejs文件：</p>
+<h5 id="templates-index-ejs"><a href="#templates-index-ejs" class="headerlink" title="templates/index.ejs"></a>templates/index.ejs</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">  </div><div class="line">  &lt;%= htmlWebpackPlugin.options.title %&gt;</div><div class="line"></div><div class="line"></div><div class="line">Welcome to New Page</div></pre></td></tr></table></figure>
+<h3 id="修改-html-webpack-plugin-设置"><a href="#修改-html-webpack-plugin-设置" class="headerlink" title="修改 html-webpack-plugin 设置"></a>修改 html-webpack-plugin 设置</h3><p>修改<code>webpack.config.js</code>文件如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  new HtmlwebpackPlugin(&#123;</div><div class="line">    title: &apos;React Biolerplate by Linghucong&apos;,</div><div class="line">    template: path.resolve(__dirname, &apos;templates/index.ejs&apos;),</div><div class="line">    inject: &apos;body&apos;</div><div class="line">  &#125;)</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>关于 html-webpack-plugin 更多高级用法可以<a href="https://github.com/ampedandwired/html-webpack-plugin" target="_blank" rel="external">参考其项目主页</a>。</p>
+<h3 id="支持sourcemap"><a href="#支持sourcemap" class="headerlink" title="支持sourcemap"></a>支持sourcemap</h3><p>sourcemap的作用各位自行Google吧。要生成编译出的js文件的sourcemap文件，只需要在webpack配置文件中加入如下一行配置即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">devtool: &apos;source-map&apos;,</div></pre></td></tr></table></figure></p>
+<p>运行<code>npm run build</code>可以看到一个会在<code>dist</code>目录生成一个新的文件<code>bundle.js.map</code>，这就是sourcemap文件。</p>
+<h3 id="Minification-代码压缩"><a href="#Minification-代码压缩" class="headerlink" title="Minification 代码压缩"></a>Minification 代码压缩</h3><p>要对生成的js文件进行压缩，需要使用一个新的插件：UglifyJsPlugin。<br>修改<code>webpack.config.js</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;</div><div class="line"></div><div class="line">var config = &#123;</div><div class="line">......</div><div class="line">  plugins: [</div><div class="line">    ......</div><div class="line">    new UglifyJsPlugin(&#123; minimize: true &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<p>运行<code>npm run build</code>可以看到生成的bundle.js文件已经被minify了。</p>
+<p>在实际的项目开发中，我们在开发阶段一般不需要将代码minify，因为压缩之后很不方便调试。因此，我们有必要将开发模式和发布模式区分开。我们通过设置<code>process.env.WEBPACK_ENV</code>来做区分。<br>修改<code>webpack.config.js</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">......</div><div class="line">var env = process.env.WEBPACK_ENV;</div><div class="line">var outputFile;</div><div class="line">var plugins = [new HtmlwebpackPlugin(&#123;</div><div class="line">      title: &apos;React Biolerplate by Linghucong&apos;,</div><div class="line">      template: path.resolve(__dirname, &apos;templates/index.ejs&apos;),</div><div class="line">      inject: &apos;body&apos;</div><div class="line">    &#125;)];</div><div class="line"></div><div class="line">if (env === &apos;build&apos;) &#123;</div><div class="line">  var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;</div><div class="line">  plugins.push(new UglifyJsPlugin(&#123; minimize: true &#125;));</div><div class="line">  outputFile = &apos;bundle.min.js&apos;;</div><div class="line">&#125; else &#123;  </div><div class="line">  outputFile = &apos;bundle.js&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var config = &#123;</div><div class="line">......              </div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, &apos;dist&apos;),  </div><div class="line">    filename: outputFile</div><div class="line">  &#125;,</div><div class="line">......</div><div class="line">  plugins: plugins</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure></p>
+<p>同时需要修改npm run的快捷方式，在<code>package.json</code>文件中修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;dev&quot;: &quot;WEBPACK_ENV=dev webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist&quot;,</div><div class="line">  &quot;build&quot;: &quot;WEBPACK_ENV=build webpack&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<h5 id="踩坑提醒-2"><a href="#踩坑提醒-2" class="headerlink" title="踩坑提醒"></a>踩坑提醒</h5><p>在Windows系统上不能像上述那样设置<code>WEBPACK_ENV</code>，可以使用<code>set</code>来设置，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;mocha --compilers js:babel-register --require ./test/test_helper.js --recursive ./test&quot;,</div><div class="line">  &quot;test:watch&quot;: &quot;npm test -- --watch&quot;,</div><div class="line">  &quot;dev&quot;: &quot;set WEBPACK_ENV=dev&amp;&amp;webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist&quot;,</div><div class="line">  &quot;build&quot;: &quot;set WEBPACK_ENV=build&amp;&amp;webpack&quot;</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h3 id="更新项目代码"><a href="#更新项目代码" class="headerlink" title="更新项目代码"></a>更新项目代码</h3><p>对我们的组件稍作修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import &apos;./index.less&apos;;</div><div class="line"></div><div class="line">import component from &apos;./component&apos;;</div><div class="line"></div><div class="line">let content = document.getElementById(&quot;content&quot;);</div><div class="line">content.appendChild(component());</div></pre></td></tr></table></figure></p>
+<p>然后编译，运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm run build</div><div class="line">$ npm run dev</div></pre></td></tr></table></figure></p>
+<p>可以看到，目前访问 <a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a> 的页面显示已经发生了变化。<br><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FhsJFMi-612vNsHQhDgwt8abvfKB814.jpg" alt="linghucong"></p>
+<p>通过查看源代码，可以看到我们页面正是应用了我们的模板文件。</p>
+<p><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FryFP8lTIrAosvDBBFT5h5nznmuH814.jpg" alt="source"></p>
+<p>到目前为止的代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v3" target="_blank" rel="external">react_boilerplate _v3</a>中查看。</p>
+<h2 id="创建React组件"><a href="#创建React组件" class="headerlink" title="创建React组件"></a>创建React组件</h2><p>我们将<code>app/index.js</code>修改一下，创建一个新的React组件。</p>
+<h5 id="app-index-js-1"><a href="#app-index-js-1" class="headerlink" title="app/index.js"></a>app/index.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;;</div><div class="line">import ReactDOM from &apos;react-dom&apos;;</div><div class="line"> </div><div class="line">class HelloReact extends React.Component &#123;</div><div class="line">  render() &#123;</div><div class="line">    return Hello React!</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">ReactDOM.render(, document.getElementById(&apos;content&apos;));</div></pre></td></tr></table></figure>
+<p>代码十分简单，引入了<code>react</code>和<code>react-dom</code>，创建了一个叫做HelloReact的组件，并将其渲染到页面上id为<code>content</code>的DOM元素内。</p>
+<h2 id="编译React代码"><a href="#编译React代码" class="headerlink" title="编译React代码"></a>编译React代码</h2><p>我们在之前已经在webpack的配置中配置好了对React的支持，因此目前不需要做什么修改了。</p>
+<p><code>npm run build</code>之后就可以在页面上看到“Hello React!”了。</p>
+<p>至此，我们基于ES6并使用webpack和Babel的React初始项目已经可以完美运行了。<br>到目前为止的代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1" target="_blank" rel="external">react_boilerplate _v4</a>中查看。</p>
+<h1 id="测试环境搭建（Mocha-Chai-Sinon）"><a href="#测试环境搭建（Mocha-Chai-Sinon）" class="headerlink" title="测试环境搭建（Mocha + Chai + Sinon）"></a>测试环境搭建（Mocha + Chai + Sinon）</h1><h2 id="所用技术介绍"><a href="#所用技术介绍" class="headerlink" title="所用技术介绍"></a>所用技术介绍</h2><p>如上所见，我在这里使用Mocha + Chai + Sinon 这几个技术来搭建我们的测试环境，简单介绍如下：</p>
+<ul>
+<li>Mocha：用于运行我们的测试用例。  </li>
+<li>Chai：Mocha用的断言库。 </li>
+<li><p>Sinon：用于创建一些mocks/stubs/spys。</p>
+<p>另外值得一提的是，AirBnB创建了一个专门针对React代码测试的开源程序：Enzyme，有兴趣的可以研究一下。</p>
+</li>
+</ul>
+<h2 id="Mocha安装及环境配置"><a href="#Mocha安装及环境配置" class="headerlink" title="Mocha安装及环境配置"></a>Mocha安装及环境配置</h2><h3 id="安装Mocha、Chai以及Sinon"><a href="#安装Mocha、Chai以及Sinon" class="headerlink" title="安装Mocha、Chai以及Sinon"></a>安装Mocha、Chai以及Sinon</h3><p>安装很简单，命令如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i mocha chai sinon --save-dev</div></pre></td></tr></table></figure></p>
+<p>因为我们要支持ES6的语法，因此还需要安装一个额外的插件<code>babel-register</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i babel-register --save-dev</div></pre></td></tr></table></figure>
+<h3 id="写一个简单的测试用例"><a href="#写一个简单的测试用例" class="headerlink" title="写一个简单的测试用例"></a>写一个简单的测试用例</h3><p>Mocha默认会去当前目录下找test目录，然后在其中去找后缀为.js的文件。如果需要修改这个目录，可以使用Mocha的参数进行设置。<br>我们这里创建一个新的目录，叫做test，然后一个新的Spec文件：</p>
+<h5 id="index-spec-js"><a href="#index-spec-js" class="headerlink" title="index.spec.js"></a>index.spec.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import &#123; expect &#125; from &apos;chai&apos;;</div><div class="line"></div><div class="line">describe(&apos;hello react spec&apos;, () =&gt; &#123;</div><div class="line">  it(&apos;works!&apos;, () =&gt; &#123;</div><div class="line">    expect(true).to.be.true;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这个时候我们在命令行中使用命令<code>mocha --compilers js:babel-register</code>运行mocha，如果顺利的话，可以看到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mocha --compilers js:babel-register</div><div class="line">  hello react spec</div><div class="line">    √ works!</div><div class="line">    </div><div class="line">  1 passing (11ms)</div></pre></td></tr></table></figure>
+<p>简单解释一下这里的<code>babel-register</code>。如果这里没有添加<code>--compilers</code>选项，则mocha会按照默认的方式执行，也就是“读取spec文件”-&gt;“运行测试用例”。使用了<code>babel-register</code>之后，则执行顺序为“读取spec文件”-&gt;“将ES6代码编译为ES5代码”-&gt;“运行测试用例”。</p>
+<h4 id="踩坑提醒-3"><a href="#踩坑提醒-3" class="headerlink" title="踩坑提醒"></a>踩坑提醒</h4><p>如果执行<code>mocha --compilers js:babel-register</code>命令的时候，出现如下的错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$ mocha --compilers js:babel-register</div><div class="line">D:\node\react_boilerplate\test\index.spec.js:1</div><div class="line">(function (exports, require, module, __filename, __dirname) &#123; import &#123; expect &#125; from &apos;chai&apos;;</div><div class="line">                                                              ^^^^^^</div><div class="line">SyntaxError: Unexpected reserved word</div><div class="line">    at exports.runInThisContext (vm.js:53:16)</div><div class="line">    at Module._compile (module.js:373:25)</div><div class="line">    at loader (D:\node\react_boilerplate\node_modules\babel-register\lib\node.js:126:5)</div><div class="line">    at Object.require.extensions.(anonymous function) [as .js] (D:\node\react_boilerplate\node_modules\babel-register\lib\node.js:136:7)</div><div class="line">    at Module.load (module.js:343:32)</div><div class="line">    at Function.Module._load (module.js:300:12)</div><div class="line">    at Module.require (module.js:353:17)</div><div class="line">    at require (internal/module.js:12:17)</div><div class="line">    at C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\lib\mocha.js:219:27</div><div class="line">    at Array.forEach (native)</div><div class="line">    at Mocha.loadFiles (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\lib\mocha.js:216:14)</div><div class="line">    at Mocha.run (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\lib\mocha.js:468:10)</div><div class="line">    at Object. (C:\Users\i301792\AppData\Roaming\npm\node_modules\mocha\bin\_mocha:403:18)</div><div class="line">    at Module._compile (module.js:409:26)</div><div class="line">    at Object.Module._extensions..js (module.js:416:10)</div><div class="line">    at Module.load (module.js:343:32)</div><div class="line">    at Function.Module._load (module.js:300:12)</div><div class="line">    at Function.Module.runMain (module.js:441:10)</div><div class="line">    at startup (node.js:139:18)</div><div class="line">    at node.js:968:3</div></pre></td></tr></table></figure></p>
+<p>这个错误可能是由于Babel的版本引入的。<a href="https://github.com/mochajs/mocha/issues/2054" target="_blank" rel="external">在这里</a>提供了一个解决方案：</p>
+<p>在我们项目中创建一个.babelrc文件，其内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [&quot;react&quot;, &quot;es2015&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其作用之前讲过了。现在就可以将我们<code>webpack.config.js</code>中对应设置删除了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#webpack.config.js</div><div class="line">...</div><div class="line">      &#123; </div><div class="line">        test: /\.jsx?$/, </div><div class="line">        loader: &apos;babel&apos;, </div><div class="line">        exclude: /node_modules/</div><div class="line">      &#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="创建测试工具库test-helper-js"><a href="#创建测试工具库test-helper-js" class="headerlink" title="创建测试工具库test_helper.js"></a>创建测试工具库test_helper.js</h3><p>注意到我们在每个测试spec文件中，都会需要引入chai库的expect，这样就会有很多重复代码。当然还有其他一些通用的帮助性代码，因此我们需要一个库来集中进行管理。这里我们创建一个新的文件<code>/test/test_helper.js</code>:</p>
+<h5 id="test-test-helper-js"><a href="#test-test-helper-js" class="headerlink" title="/test/test_helper.js"></a>/test/test_helper.js</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import &#123; expect &#125; from &apos;chai&apos;;</div><div class="line">import sinon from &apos;sinon&apos;;</div><div class="line"></div><div class="line">global.expect = expect;</div><div class="line">global.sinon = sinon;</div></pre></td></tr></table></figure>
+<p>在这里我只是添加了chai的expect，以及引入了sinon。</p>
+<p>现在就可以将<code>index.spec.js</code>文件的第一行删除，然后通过如下的命令来执行mocha命令了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mocha --compilers js:babel-register --require ./test/test_helper.js --recursive</div></pre></td></tr></table></figure></p>
+<p>执行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">λ mocha --compilers js:babel-register --require ./test/test_helper.js --recursive</div><div class="line">  hello react spec</div><div class="line">    √ works!</div><div class="line">  1 passing (12ms)</div></pre></td></tr></table></figure>
+<h3 id="配置package-json中的快捷方式"><a href="#配置package-json中的快捷方式" class="headerlink" title="配置package.json中的快捷方式"></a>配置<code>package.json</code>中的快捷方式</h3><p>在<code>package.json</code>中我们可以创建上述mocha命令的快捷方式。在<code>scripts</code>字段中作如下修改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#package.json</div><div class="line"></div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;mocha --compilers js:babel-register --require ./test/test_helper.js --recursive ./test&quot;,</div><div class="line">    &quot;test:watch&quot;: &quot;npm test -- --watch&quot;,</div><div class="line">    &quot;dev&quot;: &quot;webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist&quot;,</div><div class="line">    &quot;build&quot;: &quot;webpack&quot;</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<p>然后就可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run test</div></pre></td></tr></table></figure></p>
+<p>来直接运行mocha了。</p>
+<p>注意这里我还新增加了一个<code>npm run test:watch</code>快捷方式，其实就是使用了mocha的<code>--watch</code>选项。有了它，当我们在对代码进行修改的时候，就会自动运行test了。</p>
+<p>到目前为止的代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v1" target="_blank" rel="external">react_boilerplate _v5</a>中查看。</p>
+<h1 id="使用Karma测试"><a href="#使用Karma测试" class="headerlink" title="使用Karma测试"></a>使用Karma测试</h1><h2 id="karma安装与配置"><a href="#karma安装与配置" class="headerlink" title="karma安装与配置"></a>karma安装与配置</h2><p>Karma是一个基于Node.js的前端测试启动器（Test Runner），它出自Google的Angularjs团队。该工具可用于测试所有主流Web浏览器，可以支持Chrome、Safari、Firefox、IE、Opera甚至PhantomJS。</p>
+<p>安装Karma：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install karma --save-dev</div></pre></td></tr></table></figure>
+<p>然后还需要安装我们需要用到的一些依赖库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install lolex phantomjs-prebuilt phantomjs --save-dev</div><div class="line"></div><div class="line">npm install karma-chai karma-chai-plugins karma-chai-sinon karma-mocha karma-mocha-reporter karma-phantomjs-launcher karma-sinon karma-sinon-chai karma-sourcemap-loader karma-webpack --save-dev</div></pre></td></tr></table></figure></p>
+<h5 id="踩坑提醒-4"><a href="#踩坑提醒-4" class="headerlink" title="踩坑提醒"></a>踩坑提醒</h5><p>不要问我为什么装那么多扩展，因为我踩过很多坑，这里就直接跳过了:&lt;</p>
+<p>然后我们就可以使用karma命令来生成一个配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">λ .\node_modules\.bin\karma.cmd init karma.conf.js</div><div class="line"></div><div class="line">Which testing framework do you want to use ?</div><div class="line">Press tab to list possible options. Enter to move to the next question.</div><div class="line">&gt; mocha</div><div class="line"></div><div class="line">Do you want to use Require.js ?</div><div class="line">This will add Require.js plugin.</div><div class="line">Press tab to list possible options. Enter to move to the next question.</div><div class="line">&gt; no</div><div class="line"></div><div class="line">Do you want to capture any browsers automatically ?</div><div class="line">Press tab to list possible options. Enter empty string to move to the next question.</div><div class="line">&gt; PhantomJS</div><div class="line">&gt; Chrome</div><div class="line">&gt;</div><div class="line"></div><div class="line">What is the location of your source and test files ?</div><div class="line">You can use glob patterns, eg. &quot;js/*.js&quot; or &quot;test/**/*Spec.js&quot;.</div><div class="line">Enter empty string to move to the next question.</div><div class="line">&gt; app/*.js</div><div class="line">&gt; test/*.spec.js</div><div class="line">&gt;</div><div class="line"></div><div class="line">Should any of the files included by the previous patterns be excluded ?</div><div class="line">You can use glob patterns, eg. &quot;**/*.swp&quot;.</div><div class="line">Enter empty string to move to the next question.</div><div class="line">&gt;</div><div class="line"></div><div class="line">Do you want Karma to watch all the files and run the tests on change ?</div><div class="line">Press tab to list possible options.</div><div class="line">&gt; yes</div><div class="line"></div><div class="line"></div><div class="line">Config file generated at &quot;D:\node\react_boilerplate\karma.conf.js&quot;.</div></pre></td></tr></table></figure>
+<p>然后我们就可以使用<code>karma start</code>命令来运行我们的测试用例了。不过现在直接运行可能还有一些问题，暂时先不管。</p>
+<h2 id="优化Karma配置文件"><a href="#优化Karma配置文件" class="headerlink" title="优化Karma配置文件"></a>优化Karma配置文件</h2><p>我们使用一个单独的文件<code>test.webpack.js</code>来保存测试文件的路径，方便在karma设置中进行预处理。新建文件<code>test.webpack.js</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function requireAll(requireContext) &#123;</div><div class="line">  return requireContext.keys().map(requireContext);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var modules = requireAll(require.context(&quot;./test&quot;, true, /.+\.spec\.jsx?$/));</div><div class="line"></div><div class="line">module.exports = modules</div></pre></td></tr></table></figure>
+<p>然后修改<code>karma.config.js</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">var webpackConfig = require(&apos;./webpack.config&apos;);</div><div class="line">webpackConfig.devtool = &apos;inline-source-map&apos;;</div><div class="line"></div><div class="line">module.exports = function (config) &#123;</div><div class="line">  config.set(&#123;</div><div class="line">    browsers: [ &apos;PhantomJS&apos; ],</div><div class="line">    singleRun: true,</div><div class="line">    frameworks: [ &apos;mocha&apos;, &apos;chai&apos;, &apos;sinon&apos;, &apos;sinon-chai&apos; ],</div><div class="line">    files: [</div><div class="line">      &apos;test.webpack.js&apos;</div><div class="line">    ],</div><div class="line">    plugins: [</div><div class="line">      &apos;karma-phantomjs-launcher&apos;,</div><div class="line">      &apos;karma-chrome-launcher&apos;,</div><div class="line">      &apos;karma-chai&apos;,</div><div class="line">      &apos;karma-mocha&apos;,</div><div class="line">      &apos;karma-sourcemap-loader&apos;,</div><div class="line">      &apos;karma-webpack&apos;,</div><div class="line">      &apos;karma-mocha-reporter&apos;,</div><div class="line">      &apos;karma-sinon&apos;,</div><div class="line">      &apos;karma-sinon-chai&apos;</div><div class="line">    ],</div><div class="line">    preprocessors: &#123;</div><div class="line">      &apos;test.webpack.js&apos;: [ &apos;webpack&apos;, &apos;sourcemap&apos; ]</div><div class="line">    &#125;,</div><div class="line">    reporters: [ &apos;mocha&apos; ],</div><div class="line">    webpack: webpackConfig,</div><div class="line">    webpackServer: &#123;</div><div class="line">      noInfo: true</div><div class="line">    &#125;,</div><div class="line">    autoWatch: true</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="运行Karma"><a href="#运行Karma" class="headerlink" title="运行Karma"></a>运行Karma</h2><p>好了，到现在为止，我们可以正常运行我们的测试用例了。使用命令<code>karma start</code>运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ karma start</div><div class="line"></div><div class="line">START:</div><div class="line">29 04 2016 13:26:50.350:INFO [karma]: Karma v0.13.22 server started at http://localhost:9876/</div><div class="line">29 04 2016 13:26:50.375:INFO [launcher]: Starting browser PhantomJS</div><div class="line">29 04 2016 13:26:52.072:INFO [PhantomJS 2.1.1 (Windows 8 0.0.0)]: Connected on socket /#05AECTTMgBTkXK4kAAAA with id 76498752</div><div class="line">  hello react spec</div><div class="line">    √ works!!!</div><div class="line"></div><div class="line">Finished in 0.008 secs / 0.001 secs</div><div class="line"></div><div class="line">SUMMARY:</div><div class="line">√ 1 test completed</div></pre></td></tr></table></figure>
+<p>可以看到，测试用例测试通过了。</p>
+<p>目前我们在karma的配置文件中设置的浏览器类型是“browsers: [ ‘PhantomJS’ ]”，也就是会使用PhantomJS来运行。如果需要使用其他浏览器，可以做相应修改，甚至添加多个。比如我们要支持打开Chrome浏览器运行测试，修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">browsers: [ &apos;Chrome&apos; ]</div></pre></td></tr></table></figure></p>
+<p>正常运作的前提是，必须事先安装好了对应的插件，对应Chrome的就是’karma-chrome-launcher’，其他浏览器类型类似处理。</p>
+<h2 id="添加karma快捷方式到npm"><a href="#添加karma快捷方式到npm" class="headerlink" title="添加karma快捷方式到npm"></a>添加karma快捷方式到npm</h2><p>我们之前使用<code>npm run test</code>来运行测试，<code>npm run test:watch</code>来监听文件改变并运行测试。使用karma之后，需要在<code>package.json</code>中作如下修改：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;karma start&quot;,</div><div class="line">  &quot;test:watch&quot;: &quot;watch \&quot;npm run test\&quot; app/&quot;,</div><div class="line">  ......</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另外需要安装一个npm包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install watch --save-dev</div></pre></td></tr></table></figure></p>
+<p>这样我们就可以使用<code>npm run test</code>来运行测试，<code>npm run test:watch</code>来监听文件改变并自动运行测试了：</p>
+<p><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fo8y7n8p4qhOi9Bq0gf3pXE-xrJQ87.jpg" alt="karma"></p>
+<p>到目前为止我们自己的react boilerplate已经创建完毕了！代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v6" target="_blank" rel="external">react_boilerplate _v6</a>中查看。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本文带你一步步建立了自己的react boilerplate项目，但是需要知道的是，文中所述甚浅，只是带你入门罢了。其中每一个话题，都可以展开来再写一系列的文章。比如测试所用的mocha+chai+sinon套装，比如React测试利器Enzyme等。即便是文中已经成型的代码，亦多有可优化的地方。如果你有好的意见或者建议，也欢迎到这个Github repo上来提pull request或者issue：</p>
+<p><a href="https://github.com/jiji262/react_boilerplate" target="_blank" rel="external">https://github.com/jiji262/react_boilerplate</a></p>
+<p>最后，感谢阅读。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://blog.david-reid.com/2016/02/07/webpack-dev-server/" target="_blank" rel="external">Webpack Dev Server</a></p>
+<p><a href="https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98dc#.8bo5cmbs9" target="_blank" rel="external">Building Your First React.js App</a></p>
+<p><a href="https://medium.com/@yamalight/building-modular-javascript-applications-in-es6-with-react-webpack-and-babel-538189cd485f" target="_blank" rel="external">Building modular javascript applications in ES6 with React, Webpack and Babel</a></p>
+<p><a href="https://medium.com/@MoBinni/a-modern-isomorphic-stack-6609c7c9d057" target="_blank" rel="external">A Modern Isomorphic Stack</a></p>
+<p><a href="http://jxnblk.com/writing/posts/static-site-generation-with-react-and-webpack/" target="_blank" rel="external">STATIC SITE GENERATION WITH REACT AND WEBPACK</a></p>
+<p><a href="http://smashingboxes.com/blog/learn-react-part-1" target="_blank" rel="external">LEARN REACT.JS A LITTLE AT A TIME, PART 1</a></p>
+<p><a href="https://www.twilio.com/blog/2015/08/setting-up-react-for-es6-with-webpack-and-babel-2.html" target="_blank" rel="external">Setting up React for ES6 with Webpack and Babel</a></p>
+<p><a href="https://onsen.io/blog/mocha-chaijs-unit-test-coverage-es6/" target="_blank" rel="external">Mocha + Chai.js unit testing for ES6 with Istanbul code coverage</a></p>
+<p><a href="https://github.com/davezuko/react-redux-starter-kit" target="_blank" rel="external">davezuko/react-redux-starter-kit</a></p>
+<p><a href="https://github.com/jiji262/awesome-react-boilerplate" target="_blank" rel="external">awesome-react-boilerplate</a></p>
+
+      
+    </div>
+        
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/15/2016-04-15-hexo-github-pages-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你使用Hexo + Github Pages搭建个人独立博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+    <div style="font-size:12px;border-bottom: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BACKGROUND: #f6f6f6; HEIGHT: 120px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid">
+<div style="MARGIN-TOP: 10px; FLOAT: left; MARGIN-LEFT: 5px; MARGIN-RIGHT: 10px">
+<IMG alt="" src="https://avatars1.githubusercontent.com/u/168751?v=3&s=140" width=90 height=100>
+</div>
+<div style="LINE-HEIGHT: 200%; MARGIN-TOP: 10px; COLOR: #000000">
+本文链接：<a href="">手把手教你基于ES6架构自己的React Boilerplate项目</a> <br/>
+作者： 
+<a href="http://jiji262.github.io/">令狐葱</a> <br/>出处： 
+<a href="http://jiji262.github.io/">http://jiji262.github.io/</a>
+<br/>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>
+国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名 
+<a href="http://jiji262.github.io/">令狐葱</a>及链接。
+</div>
+</div>
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="create-your-own-react-boilerplate" data-title="手把手教你基于ES6架构自己的React Boilerplate项目" data-url="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jiji262"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 令狐葱
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
