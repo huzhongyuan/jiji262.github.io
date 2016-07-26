@@ -1,7 +1,14 @@
+---
+title: 手把手教你为React Boilerplate添加测试代码覆盖率报告
+layout: post
+date: 2016-7-26 20:10
+comments: true
+tags: [前端, webpack, react, karma, coverage]
+---
 
 ## 前言
 
-在上一篇文章中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在上一篇文章的基础上为其增加生成代码覆盖率的功能。
+在[上一篇文章](http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/)中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在[上一篇文章](http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/)的基础上为其增加生成代码覆盖率的功能。
 
 ### 代码
 
@@ -11,7 +18,7 @@
 
 ### react boilerplate代码
 
-首先拿到上一篇文章的代码：
+首先拿到[上一篇文章](http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/)的代码：
 
 ```
 # git clone https://github.com/jiji262/react_boilerplate.git
@@ -48,6 +55,7 @@
 
 # npm run test # 使用karma+mocha进行测试
 ```
+<!-- more -->
 
 ## 测试代码覆盖率
 

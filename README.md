@@ -32,11 +32,11 @@ You can add following line in your .md file to add a readmore button:
 ## header template
 
 ```
-title: "Javascript知识点：IIFE - 立即调用函数"
+---
+title: 手把手教你基于ES6架构自己的React Boilerplate项目
 layout: post
-date: 2016-04-08 20:10
+date: 2016-4-29 20:10
 comments: true
-tags: [前端, IIFE, 前端基础]
-
+tags: [前端, webpack, react, karma, mocha, sinon]
 ---
 ```
