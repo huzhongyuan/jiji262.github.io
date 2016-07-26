@@ -13,6 +13,12 @@ The following is the hexo commands:
 # hexo g // generate the static files
 # hexo d // deploy to github
 ```
+check in the source codes:
+```
+# git add .
+# git commit -m "new update post"
+# git push origin code
+```
 
 # Useful Tips
 
