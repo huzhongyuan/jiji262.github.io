@@ -6,14 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>手把手教你基于ES6架构自己的React Boilerplate项目 | My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
-葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+  <meta name="description" content="Update
+[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：create-react-app
+
+前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boiler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手把手教你基于ES6架构自己的React Boilerplate项目">
 <meta property="og:url" content="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/index.html">
 <meta property="og:site_name" content="My Blog">
-<meta property="og:description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
-葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+<meta property="og:description" content="Update
+[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：create-react-app
+
+前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boiler">
 <meta property="og:image" content="http://webpack.github.io/assets/what-is-webpack.png">
 <meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fq4VS1Pe2NGaTyUIkNKJCADwE-iy336.jpg">
 <meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fg7Cmp52pR7rdmvgdzobkVRGD2d_524.jpg">
@@ -22,11 +26,13 @@
 <meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FhsJFMi-612vNsHQhDgwt8abvfKB814.jpg">
 <meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/FryFP8lTIrAosvDBBFT5h5nznmuH814.jpg">
 <meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/29/Fo8y7n8p4qhOi9Bq0gf3pXE-xrJQ87.jpg">
-<meta property="og:updated_time" content="2016-07-25T09:44:26.000Z">
+<meta property="og:updated_time" content="2016-07-26T01:55:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手把手教你基于ES6架构自己的React Boilerplate项目">
-<meta name="twitter:description" content="前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boilerplate，我们可以快速的创建一个React项目的架构。
-葱哥之前专门创建了一个Github项目用于收集这些boilerplate：awesome-react-boi">
+<meta name="twitter:description" content="Update
+[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：create-react-app
+
+前言React技术之火爆无须多言，其与webpack的完美结合，也让二者毋庸置疑的成为天生一对。为了进行React的快速和规范化开发，开源社区中涌现了很多React+webpack的boilerplate项目。通过使用这些boiler">
 <meta name="twitter:image" content="http://webpack.github.io/assets/what-is-webpack.png">
   
     <link rel="alternative" href="/atom.xml" title="My Blog" type="application/atom+xml">
@@ -204,11 +210,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
+        <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a><strong>Update</strong></h3><ul>
+<li>[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：<a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
 <p><a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>之前专门创建了一个Github项目用于收集这些<code>boilerplate</code>：<a href="http://jiji262.github.io/awesome-react-boilerplate/">awesome-react-boilerplate</a>。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。</p>
 <p>当然，由于每个人的使用习惯和技术背景的不同，每个<code>boilerplate</code>都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>相信，只有适合自己的，才是最好的。这就是本文的初衷，<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥</a>会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置<code>webpack</code>，在<code>React</code>项目中使用<code>webpack</code>，搭建项目的测试环境，一步一步构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。</p>
-<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥的Github</a>。</p>
+<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。</p>
+<p>当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262" target="_blank" rel="external">葱哥的Github</a>。</p>
 <p>TL;DR</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本文所有代码可以在我的Github中找到：<a href="https://github.com/jiji262/codeigniter_boilerplate" target="_blank" rel="external">codeigniter_boilerplate</a></p>
 <h3 id="将使用的技术栈"><a href="#将使用的技术栈" class="headerlink" title="将使用的技术栈"></a>将使用的技术栈</h3><p>如前所述，本文的主要目的是构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。与其他多数类似项目不同的是，我们不仅要支持ES6，使用webpack，而且要搭建一套相对完整的单元测试和自动化测试体系。本文主要使用到的相关技术如下：</p>
 <ul>
 <li>React</li>

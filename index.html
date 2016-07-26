@@ -179,11 +179,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
+        <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a><strong>Update</strong></h3><ul>
+<li>[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：<a href="https://github.com/facebookincubator/create-react-app">create-react-app</a></li>
+</ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
 <p><a href="https://github.com/jiji262">葱哥</a>之前专门创建了一个Github项目用于收集这些<code>boilerplate</code>：<a href="http://jiji262.github.io/awesome-react-boilerplate/">awesome-react-boilerplate</a>。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。</p>
 <p>当然，由于每个人的使用习惯和技术背景的不同，每个<code>boilerplate</code>都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。<a href="https://github.com/jiji262">葱哥</a>相信，只有适合自己的，才是最好的。这就是本文的初衷，<a href="https://github.com/jiji262">葱哥</a>会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置<code>webpack</code>，在<code>React</code>项目中使用<code>webpack</code>，搭建项目的测试环境，一步一步构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。</p>
-<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262">葱哥的Github</a>。</p>
+<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。</p>
+<p>当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262">葱哥的Github</a>。</p>
 <p>TL;DR</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本文所有代码可以在我的Github中找到：<a href="https://github.com/jiji262/codeigniter_boilerplate">codeigniter_boilerplate</a></p>
 <h3 id="将使用的技术栈"><a href="#将使用的技术栈" class="headerlink" title="将使用的技术栈"></a>将使用的技术栈</h3><p>如前所述，本文的主要目的是构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。与其他多数类似项目不同的是，我们不仅要支持ES6，使用webpack，而且要搭建一套相对完整的单元测试和自动化测试体系。本文主要使用到的相关技术如下：</p>
 <ul>
 <li>React</li>
@@ -257,10 +262,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a><strong>Update</strong></h3><ul>
-<li>[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：<a href="https://github.com/facebookincubator/create-react-app">create-react-app</a></li>
-</ul>
-<h2 id="系统环境配置"><a href="#系统环境配置" class="headerlink" title="系统环境配置"></a>系统环境配置</h2><p>要使用Hexo，需要在你的系统中支持Nodejs以及Git，如果还没有，那就开始安装吧！</p>
+        <h2 id="系统环境配置"><a href="#系统环境配置" class="headerlink" title="系统环境配置"></a>系统环境配置</h2><p>要使用Hexo，需要在你的系统中支持Nodejs以及Git，如果还没有，那就开始安装吧！</p>
 <h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p><a href="https://nodejs.org/download/">下载Node.js</a><br>参考地址：<a href="http://www.w3cschool.cc/nodejs/nodejs-install-setup.html">安装Node.js</a></p>
 <h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>下载地址：<a href="http://git-scm.com/download/">http://git-scm.com/download/</a></p>
 <h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> d:/hexo</div><div class="line">$ npm install hexo-cli -g</div><div class="line">$ hexo init blog</div><div class="line">$ <span class="built_in">cd</span> blog</div><div class="line">$ npm install</div><div class="line">$ hexo g <span class="comment"># 或者hexo generate</span></div><div class="line">$ hexo s <span class="comment"># 或者hexo server，可以在http://localhost:4000/ 查看</span></div></pre></td></tr></table></figure>
