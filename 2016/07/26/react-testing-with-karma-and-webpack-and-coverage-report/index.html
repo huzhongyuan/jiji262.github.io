@@ -4,14 +4,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>My Blog</title>
+  <title>手把手教你为React Boilerplate添加测试代码覆盖率报告 | My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="My Blog">
-<meta property="og:url" content="http://jiji262.github.io/index.html">
+  <meta name="description" content="前言在上一篇文章中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在上一篇文章的基础上为其增加生成代码覆盖率的功能。
+代码本文的最终代码可以在react_boilerplate_v8中查看。
+准备工作react boilerpl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教你为React Boilerplate添加测试代码覆盖率报告">
+<meta property="og:url" content="http://jiji262.github.io/2016/07/26/react-testing-with-karma-and-webpack-and-coverage-report/index.html">
 <meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="前言在上一篇文章中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在上一篇文章的基础上为其增加生成代码覆盖率的功能。
+代码本文的最终代码可以在react_boilerplate_v8中查看。
+准备工作react boilerpl">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/coverage1.png">
+<meta property="og:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/coverage2.png">
+<meta property="og:updated_time" content="2016-07-26T07:48:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="My Blog">
+<meta name="twitter:title" content="手把手教你为React Boilerplate添加测试代码覆盖率报告">
+<meta name="twitter:description" content="前言在上一篇文章中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在上一篇文章的基础上为其增加生成代码覆盖率的功能。
+代码本文的最终代码可以在react_boilerplate_v8中查看。
+准备工作react boilerpl">
+<meta name="twitter:image" content="http://7xsxyo.com1.z0.glb.clouddn.com/coverage1.png">
   
     <link rel="alternative" href="/atom.xml" title="My Blog" type="application/atom+xml">
   
@@ -151,9 +164,7 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
-  
-    <article id="post-react-testing-with-karma-and-webpack-and-coverage-report" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-react-testing-with-karma-and-webpack-and-coverage-report" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/07/26/react-testing-with-karma-and-webpack-and-coverage-report/" class="article-date">
@@ -169,12 +180,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/react-testing-with-karma-and-webpack-and-coverage-report/">手把手教你为React Boilerplate添加测试代码覆盖率报告</a>
+    <h1 class="article-title" itemprop="name">
+      手把手教你为React Boilerplate添加测试代码覆盖率报告
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coverage/">coverage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -212,21 +234,34 @@
 
       
     </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coverage/">coverage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-	</div>
-
-      
-      
-      
-      <div class="clearfix"></div>
-    </div>
         
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/29/create-your-own-react-boilerplate/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你基于ES6架构自己的React Boilerplate项目</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+    <div style="font-size:12px;border-bottom: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BACKGROUND: #f6f6f6; HEIGHT: 120px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid">
+<div style="MARGIN-TOP: 10px; FLOAT: left; MARGIN-LEFT: 5px; MARGIN-RIGHT: 10px">
+<IMG alt="" src="https://avatars1.githubusercontent.com/u/168751?v=3&s=140" width=90 height=100>
+</div>
+<div style="LINE-HEIGHT: 200%; MARGIN-TOP: 10px; COLOR: #000000">
+本文链接：<a href="">手把手教你为React Boilerplate添加测试代码覆盖率报告</a> <br/>
+作者： 
+<a href="http://jiji262.github.io/">令狐葱</a> <br/>出处： 
+<a href="http://jiji262.github.io/">http://jiji262.github.io/</a>
+<br/>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>
+国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名 
+<a href="http://jiji262.github.io/">令狐葱</a>及链接。
+</div>
+</div>
   
 </article>
 
@@ -235,263 +270,30 @@
 
 
 
-
-
-
-
-
-  
-    <article id="post-create-your-own-react-boilerplate" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/29/create-your-own-react-boilerplate/" class="article-date">
-  	<time datetime="2016-04-29T12:10:00.000Z" itemprop="datePublished">2016-04-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/create-your-own-react-boilerplate/">手把手教你基于ES6架构自己的React Boilerplate项目</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a><strong>Update</strong></h3><ul>
-<li>[20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：<a href="https://github.com/facebookincubator/create-react-app">create-react-app</a></li>
-</ul>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>React</code>技术之火爆无须多言，其与<code>webpack</code>的完美结合，也让二者毋庸置疑的成为天生一对。为了进行<code>React</code>的快速和规范化开发，开源社区中涌现了很多<code>React</code>+<code>webpack</code>的<code>boilerplate</code>项目。通过使用这些<code>boilerplate</code>，我们可以快速的创建一个React项目的架构。</p>
-<p><a href="https://github.com/jiji262">葱哥</a>之前专门创建了一个Github项目用于收集这些<code>boilerplate</code>：<a href="http://jiji262.github.io/awesome-react-boilerplate/">awesome-react-boilerplate</a>。当然这里不可能完整收录，但是目前为止已经有近30个了。连boilerplate都这么多，真让我们眼花缭乱，无从下手。</p>
-<p>当然，由于每个人的使用习惯和技术背景的不同，每个<code>boilerplate</code>都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。<a href="https://github.com/jiji262">葱哥</a>相信，只有适合自己的，才是最好的。这就是本文的初衷，<a href="https://github.com/jiji262">葱哥</a>会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置<code>webpack</code>，在<code>React</code>项目中使用<code>webpack</code>，搭建项目的测试环境，一步一步构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。</p>
-<p>本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。</p>
-<p>当然，如果读后觉得对你有帮助，还请关注<a href="https://github.com/jiji262">葱哥的Github</a>。</p>
-<p>TL;DR</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本文所有代码可以在我的Github中找到：<a href="https://github.com/jiji262/codeigniter_boilerplate">codeigniter_boilerplate</a></p>
-<h3 id="将使用的技术栈"><a href="#将使用的技术栈" class="headerlink" title="将使用的技术栈"></a>将使用的技术栈</h3><p>如前所述，本文的主要目的是构建适合适合自己的<code>React</code> + <code>webpack</code>起始项目。与其他多数类似项目不同的是，我们不仅要支持ES6，使用webpack，而且要搭建一套相对完整的单元测试和自动化测试体系。本文主要使用到的相关技术如下：</p>
-<ul>
-<li>React</li>
-<li>webpack</li>
-<li>babel</li>
-<li>ES6</li>
-<li>mocha</li>
-<li>chai</li>
-<li>sinon</li>
-<li>karma</li>
-<li>phantomJS</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/karma/">karma</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mocha/">mocha</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sinon/">sinon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
-	</div>
-
-      
-      
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/29/create-your-own-react-boilerplate/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-        
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="react-testing-with-karma-and-webpack-and-coverage-report" data-title="手把手教你为React Boilerplate添加测试代码覆盖率报告" data-url="http://jiji262.github.io/2016/07/26/react-testing-with-karma-and-webpack-and-coverage-report/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jiji262"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-2016-04-15-hexo-github-pages-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/15/2016-04-15-hexo-github-pages-blog/" class="article-date">
-  	<time datetime="2016-04-15T12:10:00.000Z" itemprop="datePublished">2016-04-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/15/2016-04-15-hexo-github-pages-blog/">手把手教你使用Hexo + Github Pages搭建个人独立博客</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="系统环境配置"><a href="#系统环境配置" class="headerlink" title="系统环境配置"></a>系统环境配置</h2><p>要使用Hexo，需要在你的系统中支持Nodejs以及Git，如果还没有，那就开始安装吧！</p>
-<h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p><a href="https://nodejs.org/download/">下载Node.js</a><br>参考地址：<a href="http://www.w3cschool.cc/nodejs/nodejs-install-setup.html">安装Node.js</a></p>
-<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>下载地址：<a href="http://git-scm.com/download/">http://git-scm.com/download/</a></p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> d:/hexo</div><div class="line">$ npm install hexo-cli -g</div><div class="line">$ hexo init blog</div><div class="line">$ <span class="built_in">cd</span> blog</div><div class="line">$ npm install</div><div class="line">$ hexo g <span class="comment"># 或者hexo generate</span></div><div class="line">$ hexo s <span class="comment"># 或者hexo server，可以在http://localhost:4000/ 查看</span></div></pre></td></tr></table></figure>
-<p>这里有必要提下Hexo常用的几个命令：</p>
-<ol>
-<li>hexo generate (hexo g) 生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</li>
-<li>hexo server (hexo s) 启动本地web服务，用于博客的预览</li>
-<li>hexo deploy (hexo d) 部署播客到远端（比如github, heroku等平台）</li>
-</ol>
-<p>另外还有其他几个常用命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></div><div class="line">$ hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></div></pre></td></tr></table></figure></p>
-<p>常用简写<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo n == hexo new</div><div class="line">$ hexo g == hexo generate</div><div class="line">$ hexo s == hexo server</div><div class="line">$ hexo d == hexo deploy</div></pre></td></tr></table></figure></p>
-<p>常用组合<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g <span class="comment">#生成部署</span></div><div class="line">$ hexo s -g <span class="comment">#生成预览</span></div></pre></td></tr></table></figure></p>
-<p>现在我们打开<a href="http://localhost:4000/">http://localhost:4000/</a> 已经可以看到一篇内置的blog了。<br><img src="http://7xsxyo.com1.z0.glb.clouddn.com/2016/04/15/FgBbsEvswR84bkwXSjIRBne9bX9q648.jpg" alt=""></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
-	</div>
-
-      
-      
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/15/2016-04-15-hexo-github-pages-blog/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-        
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016-04-08-Javascript-IIFE" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/08/2016-04-08-Javascript-IIFE/" class="article-date">
-  	<time datetime="2016-04-08T12:10:00.000Z" itemprop="datePublished">2016-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/08/2016-04-08-Javascript-IIFE/">Javascript知识点：IIFE - 立即调用函数</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Immediately-invoked Function Expression（IIFE，立即调用函数），简单的理解就是定义完成函数之后立即执行。因此有时候也会被称为“自执行的匿名函数”（self-executing anonymous function）。</p>
-<p>IIFE的叫法最早见于Ben Alman的文章。文章中Ben Alman 已经解释得很清楚了，希望定义自执行函数式常见的语法错误有两种：</p>
-<p>1) <code>function (){ }()</code></p>
-<p>期望是立即调用一个匿名函数表达式，结果是进行了函数声明，函数声明必须要有标识符做为函数名称。</p>
-<p>2) <code>function g(){ }()</code></p>
-<p>期望是立即调用一个具名函数表达式，结果是声明了函数 g。末尾的括号作为分组运算符，必须要提供表达式做为参数。<br>所以那些匿名函数附近使用括号或一些一元运算符的惯用法，就是来引导解析器，指明运算符附近是一个表达式。</p>
-<p>按照这个理解，可以举出五类，超过十几种的让匿名函数表达式立即调用的写法：</p>
-<p><strong>1）使用括号</strong></p>
-<pre><code>( function() {}() );
-( function() {} )();
-[ function() {}() ];
-</code></pre><p><strong>2）使用一元操作符</strong></p>
-<pre><code>~ function() {}();
-! function() {}();
-+ function() {}();
-- function() {}();
-</code></pre><p><strong>3）使用void等操作符</strong></p>
-<pre><code>delete function() {}();
-typeof function() {}();
-void function() {}();
-</code></pre><p><strong>4）使用表达式</strong></p>
-<pre><code>var i = function(){ return 10; }();
-true &amp;&amp; function(){ /* code */ }();
-0, function(){ /* code */ }();
-1 ^ function() {}();
-1 &gt; function() {}();
-</code></pre><p><strong>5）使用new关键字</strong></p>
-<pre><code>new function(){ /* code */ }
-
-new function(){ /* code */ }() //如果没有参数，最后的()就不需要了
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IIFE/">IIFE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端基础/">前端基础</a></li></ul>
-	</div>
-
-      
-      
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/08/2016-04-08-Javascript-IIFE/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-        
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -515,8 +317,8 @@ new function(){ /* code */ }() //如果没有参数，最后的()就不需要了
 		fancybox: true,
 		mathjax: true,
 		animate: undefined,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
