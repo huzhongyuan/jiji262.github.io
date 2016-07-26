@@ -6,9 +6,6 @@ tags: [Hexo, Github]
 
 ---
 
-## **Update**
-
-* [20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：[create-react-app](https://github.com/facebookincubator/create-react-app)
 
 ## 系统环境配置
 
@@ -150,12 +147,32 @@ hexo d
 ```
 即可完成部署。
 
-注意需要提前安装一个扩展：
+**踩坑提醒**
+
+1）注意需要提前安装一个扩展：
+
 ```
 $ npm install hexo-deployer-git --save
 ```
 
-### 使用git命令行部署
+2）如果出现下面这样的错误，
+```
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+则是因为没有设置好public key所致。
+在本机生成public key(参考[github帮助](https://help.github.com/articles/generating-an-ssh-key/))：
+```
+＃ssh-keygen -t rsa -b 4096 -C "xxx@xxx.com"
+```
+然后在#user_id/.ssh目录下会生成两个文件，id_rsa.pub和id_rsa.
+然后登陆github，在[SSH设置页面](https://github.com/settings/ssh)添加上刚才的public key文件也就是id_rsa.pub的内容即可。
+
+
+### 使用git命令行部署（optional）
 
 不幸的是，上述命令虽然简单方便，但是偶尔会有莫名其妙的问题出现，因此，我们也可以追本溯源，使用git命令来完成部署的工作。
 

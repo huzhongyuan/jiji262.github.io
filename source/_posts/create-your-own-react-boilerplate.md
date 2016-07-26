@@ -7,6 +7,10 @@ tags: [前端, webpack, react, karma, mocha, sinon]
 ---
 
 
+### **Update**
+
+* [20160725] Facebook 官方提供了一个可以生成React Starter项目的工具，有兴趣可以看下：[create-react-app](https://github.com/facebookincubator/create-react-app)
+
 # 前言
 
 `React`技术之火爆无须多言，其与`webpack`的完美结合，也让二者毋庸置疑的成为天生一对。为了进行`React`的快速和规范化开发，开源社区中涌现了很多`React`+`webpack`的`boilerplate`项目。通过使用这些`boilerplate`，我们可以快速的创建一个React项目的架构。
@@ -15,9 +19,15 @@ tags: [前端, webpack, react, karma, mocha, sinon]
 
 当然，由于每个人的使用习惯和技术背景的不同，每个`boilerplate`都会有自己的侧重点，因此即便是公认比较好的boilerplate项目也未必适合所有人。我们拿到这些开源项目，只是知其然但是并不知其所以然。[葱哥](https://github.com/jiji262)相信，只有适合自己的，才是最好的。这就是本文的初衷，[葱哥](https://github.com/jiji262)会追根溯源，从项目开发的蛮荒阶段开始，搭建开发环境，配置`webpack`，在`React`项目中使用`webpack`，搭建项目的测试环境，一步一步构建适合适合自己的`React` + `webpack`起始项目。
 
-本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。当然，如果读后觉得对你有帮助，还请关注[葱哥的Github](https://github.com/jiji262)。
+本文陆陆续续写了将近一个月的时间，所使用的技术和依赖库均选用目前最新版本，其间大大小小的坑踩过不知道多少。本文供入门参考，如果你是前端大牛，请直接忽略此文。
+
+当然，如果读后觉得对你有帮助，还请关注[葱哥的Github](https://github.com/jiji262)。
 
 TL;DR
+
+### 代码
+
+本文所有代码可以在我的Github中找到：[codeigniter_boilerplate](https://github.com/jiji262/codeigniter_boilerplate)
 
 
 ### 将使用的技术栈
