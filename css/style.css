@@ -1535,7 +1535,8 @@ a {
 }
 .article-entry .highlight .line {
   font-size: 15px;
-  height: 15px;
+  height: 26px;
+  line-height: 26px;
 }
 .article-entry .gist {
   margin: 0 -20px;
