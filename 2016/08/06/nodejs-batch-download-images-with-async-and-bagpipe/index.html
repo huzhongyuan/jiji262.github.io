@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Nodejs大批量下载图片入坑指南(使用async和bagpipe处理大并发量请求) | My Blog</title>
+  <title>Nodejs大批量下载图片入坑指南(使用async和bagpipe处理大并发量请求) | 令狐葱@前端笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言故事还得从头说起。乌云网挂掉之后,乌云知识库也无法访问了。曾经,在上面看到那么多优秀的安全类文章,一下子看不到了,颇觉得有点不适应。还好网上流传着民间的各种版本,于是我收集了一下,放在了Github上。这些文章只是一些html文件,并不包含页面上的图片。幸运的是,图片的域名static.wooyun.com还可以继续访问,因此有必要把这些图片也抓取下来。
 Wooyun Drops 文章在线浏览">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nodejs大批量下载图片入坑指南(使用async和bagpipe处理大并发量请求)">
 <meta property="og:url" content="http://jiji262.github.io/2016/08/06/nodejs-batch-download-images-with-async-and-bagpipe/index.html">
-<meta property="og:site_name" content="My Blog">
+<meta property="og:site_name" content="令狐葱@前端笔记">
 <meta property="og:description" content="前言故事还得从头说起。乌云网挂掉之后,乌云知识库也无法访问了。曾经,在上面看到那么多优秀的安全类文章,一下子看不到了,颇觉得有点不适应。还好网上流传着民间的各种版本,于是我收集了一下,放在了Github上。这些文章只是一些html文件,并不包含页面上的图片。幸运的是,图片的域名static.wooyun.com还可以继续访问,因此有必要把这些图片也抓取下来。
 Wooyun Drops 文章在线浏览">
 <meta property="og:updated_time" content="2016-08-04T07:18:00.000Z">
@@ -20,7 +20,7 @@ Wooyun Drops 文章在线浏览">
 <meta name="twitter:description" content="前言故事还得从头说起。乌云网挂掉之后,乌云知识库也无法访问了。曾经,在上面看到那么多优秀的安全类文章,一下子看不到了,颇觉得有点不适应。还好网上流传着民间的各种版本,于是我收集了一下,放在了Github上。这些文章只是一些html文件,并不包含页面上的图片。幸运的是,图片的域名static.wooyun.com还可以继续访问,因此有必要把这些图片也抓取下来。
 Wooyun Drops 文章在线浏览">
   
-    <link rel="alternative" href="/atom.xml" title="My Blog" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="令狐葱@前端笔记" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
