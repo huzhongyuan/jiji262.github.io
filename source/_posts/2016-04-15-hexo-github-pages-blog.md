@@ -188,7 +188,7 @@ $ git clone https://github.com/jiji262/jiji262.github.io.git .deploy/jiji262.git
 
 #### 创建一个deploy脚本文件
 
-```
+```bash
 hexo generate
 cp -R public/* .deploy/jiji262.github.io
 cd .deploy/jiji262.github.io
@@ -284,7 +284,7 @@ $ npm install hexo-generator-feed
 $ npm install hexo-generator-sitemap
 ```
 修改_config.yml，增加以下内容
-```
+```yml
 # Extensions
 Plugins:
 - hexo-generator-feed

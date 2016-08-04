@@ -68,7 +68,7 @@ webpack对React有着与生俱来的良好支持，随着React的流行，webpac
 
 ### 初始化项目环境
 
-```
+```bash
 $ mkdir react_boilerplate
 $ cd react_boilerplate\
 
@@ -135,7 +135,7 @@ npm i webpack --save-dev
 我们给项目中的文件添加一些简单的代码，首先是组件代码：
 
 ##### app/component.js
-```
+```javascript
 module.exports = function () {
   var element = document.createElement('h1');
 
@@ -148,7 +148,7 @@ module.exports = function () {
 然后需要一个入口文件，在入口文件中使用上面定义的组件：
 
 ##### app/index.js
-```
+```javascript
 var component = require('./component');
 
 document.body.appendChild(component());
@@ -159,7 +159,7 @@ document.body.appendChild(component());
 
 我们需要让webpack知道如何处理我们的项目目录结构，因此需要配置文件`webpack.config.js`。一个简单的配置文件如下所示：
 
-```
+```javascript
 var webpack = require('webpack'); 
 var path = require('path');                 //引入node的path库
 
@@ -197,7 +197,7 @@ npm install html-webpack-plugin --save-dev
 ```
 
 然后在我们的`webpack.config.js`中增加下面几行：
-```
+```javascript
   plugins: [
     new HtmlwebpackPlugin({
       title: 'React Biolerplate by Linghucong'
@@ -207,7 +207,7 @@ npm install html-webpack-plugin --save-dev
 现在在命令行下再次执行`webpack`命令，会看到在`dist`目录下生成了两个文件：`bundle.js`和`index.html`。其中`index.html`内容如下：
 
 ##### dist/index.html
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -226,7 +226,7 @@ npm install html-webpack-plugin --save-dev
 
 我们可以在`package.json`中为此命令增加一个快捷方式：
 
-```
+```bash
 # package.json
 ... other stuff
 "scripts": {
@@ -236,7 +236,7 @@ npm install html-webpack-plugin --save-dev
 
 现在就可以直接使用命令`npm run build`来执行webpack了。
 
-```
+```javascript
 $ npm run build
 
 > react_boilerplate@1.0.0 build D:\node\react_boilerplate
@@ -265,7 +265,7 @@ npm i webpack-dev-server --save-dev
 ```
 
 然后在`webpack.config.js`文件中作如下修改：
-```
+```javascript
 # webpack.config.js
 # ...
   entry: [
@@ -278,7 +278,7 @@ npm i webpack-dev-server --save-dev
 
 我们可以在`package.json`中增加`webpack-dev-server`的快捷方式：
 
-```
+```javascript
 # package.json
 ... other stuff
 "scripts": {
@@ -289,7 +289,7 @@ npm i webpack-dev-server --save-dev
 
 配置中指定web服务器端口号为3000，指定目录为dist。
 运行`npm run dev`：
-```
+```javascript
 $ npm run dev
 
 > react_boilerplate@1.0.0 dev D:\node\react_boilerplate
@@ -339,7 +339,7 @@ npm3.0以上需要单独安装less：`npm install less --save-dev`。
 
 然后在文件`webpack.config.js`中配置：
 
-```
+```javascript
       {
         test: /\.less$/,
         loaders: ['style', 'css', 'less'],
@@ -362,7 +362,7 @@ require('./index.less');
 ```
 
 然后运行webpack进行编译：`npm run build`:
-```
+```javascript
 $ npm run build
 
 > react_boilerplate@1.0.0 build D:\node\react_boilerplate
@@ -395,7 +395,7 @@ Javascript中的包管理比较常见的有几种方式：
 
 #### CommonJS
 
-```
+```javascript
 //CommonJS 定义的是模块的同步加载，主要用于NodeJS
 
 var MyModule = require('./MyModule');
@@ -410,7 +410,7 @@ exports.hello = function() {...};
 
 #### AMD
 
-```
+```javascript
 //AMD 是异步加载，比如require.js使用这种规范
 define(['./MyModule.js'], function (MyModule) {
   // export at module root
@@ -428,7 +428,7 @@ define(['./MyModule.js'], function (MyModule) {
 ```
 
 #### ES6
-```
+```javascript
 //ES6 变得越来越主流了
 
 import MyModule from './MyModule.js';
@@ -455,7 +455,7 @@ npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --sav
 ```
 
 在`webpack.config.js`中添加loader如下：
-```
+```javascript
   { 
     test: /\.jsx?$/, 
     loader: 'babel', 
@@ -468,7 +468,7 @@ npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --sav
 由于后边需要支持React的jsx文件，所以我们在这里安装了`babel-preset-react`。
 
 顺便提一下，我们可以在项目根目录下创建一个`.babelrc`文件，将loader中的`presets`放在文件`.babelrc`中：
-```
+```javascript
 # .babelrc
 {
   "presets": ["react", "es2015"]
@@ -480,7 +480,7 @@ npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --sav
 ##### 踩坑提醒
 
 如果上面对于loader的配置写为（注意这里是`loaders`不是`loader`）：
-```
+```javascript
 { 
     test: /\.jsx?$/, 
     loaders: ['babel'], 
@@ -491,7 +491,7 @@ npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --sav
 }
 ```
 则可能会出现这样的错误：
-```
+```javascript
 $ npm run build
 
 > react_boilerplate@1.0.0 build D:\node\react_boilerplate
@@ -511,7 +511,7 @@ Error: Cannot define 'query' and multiple loaders in loaders list
 ```
 
 原因是使用了多个`loader`，而`query`仅仅作用于`babel-loader`。如果非要使用`loaders`加载多个`loader`，可以做如下修改：
-```
+```javascript
 var babelPresets = {presets: ['react', 'es2015']};
 ......
 loaders: ['other-loader', 'babel-loader?'+JSON.stringify(babelPresets)]
@@ -531,7 +531,7 @@ npm install react react-dom --save
 ```
 
 这里我们使用的版本是15.0.1。
-```
+```javascript
 $ npm install react react-dom --save
 react_boilerplate@1.0.0 D:\node\react_boilerplate
 +-- react@15.0.1
@@ -555,7 +555,7 @@ react_boilerplate@1.0.0 D:\node\react_boilerplate
 我们使用一个新的目录templates用于存放模板文件，新建一个index.ejs文件：
 
 ##### templates/index.ejs
-```
+```javascript
 
 
   
@@ -572,7 +572,7 @@ react_boilerplate@1.0.0 D:\node\react_boilerplate
 ### 修改 html-webpack-plugin 设置
 
 修改`webpack.config.js`文件如下：
-```
+```javascript
   plugins: [
     new HtmlwebpackPlugin({
       title: 'React Biolerplate by Linghucong',
@@ -598,7 +598,7 @@ devtool: 'source-map',
 要对生成的js文件进行压缩，需要使用一个新的插件：UglifyJsPlugin。
 修改`webpack.config.js`如下：
 
-```
+```javascript
 ......
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
@@ -616,7 +616,7 @@ module.exports = config;
 
 在实际的项目开发中，我们在开发阶段一般不需要将代码minify，因为压缩之后很不方便调试。因此，我们有必要将开发模式和发布模式区分开。我们通过设置`process.env.WEBPACK_ENV`来做区分。
 修改`webpack.config.js`如下：
-```
+```javascript
 ......
 var env = process.env.WEBPACK_ENV;
 var outputFile;
@@ -647,7 +647,7 @@ var config = {
 module.exports = config;
 ```
 同时需要修改npm run的快捷方式，在`package.json`文件中修改如下：
-```
+```javascript
   "scripts": {
     "dev": "WEBPACK_ENV=dev webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --content-base dist",
     "build": "WEBPACK_ENV=build webpack"
@@ -658,7 +658,7 @@ module.exports = config;
 
 在Windows系统上不能像上述那样设置`WEBPACK_ENV`，可以使用`set`来设置，如下：
 
-```
+```javascript
   "scripts": {
     "test": "mocha --compilers js:babel-register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm test -- --watch",
@@ -670,7 +670,7 @@ module.exports = config;
 ### 更新项目代码
 
 对我们的组件稍作修改：
-```
+```javascript
 import './index.less';
 
 import component from './component';
@@ -699,7 +699,7 @@ $ npm run dev
 我们将`app/index.js`修改一下，创建一个新的React组件。
 
 ##### app/index.js
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
  
@@ -756,7 +756,7 @@ Mocha默认会去当前目录下找test目录，然后在其中去找后缀为.j
 我们这里创建一个新的目录，叫做test，然后一个新的Spec文件：
 
 ##### index.spec.js
-```
+```javascript
 import { expect } from 'chai';
 
 describe('hello react spec', () => {
@@ -768,7 +768,7 @@ describe('hello react spec', () => {
 
 这个时候我们在命令行中使用命令`mocha --compilers js:babel-register`运行mocha，如果顺利的话，可以看到如下结果：
 
-```
+```javascript
 $ mocha --compilers js:babel-register
   hello react spec
     √ works!
@@ -781,7 +781,7 @@ $ mocha --compilers js:babel-register
 #### 踩坑提醒
 
 如果执行`mocha --compilers js:babel-register`命令的时候，出现如下的错误：
-```
+```javascript
 $ mocha --compilers js:babel-register
 D:\node\react_boilerplate\test\index.spec.js:1
 (function (exports, require, module, __filename, __dirname) { import { expect } from 'chai';
@@ -811,13 +811,13 @@ SyntaxError: Unexpected reserved word
 这个错误可能是由于Babel的版本引入的。[在这里](https://github.com/mochajs/mocha/issues/2054)提供了一个解决方案：
 
 在我们项目中创建一个.babelrc文件，其内容如下：
-```
+```javascript
 {
   "presets": ["react", "es2015"]
 }
 ```
 其作用之前讲过了。现在就可以将我们`webpack.config.js`中对应设置删除了：
-```
+```javascript
 #webpack.config.js
 ...
       { 
@@ -832,7 +832,7 @@ SyntaxError: Unexpected reserved word
 注意到我们在每个测试spec文件中，都会需要引入chai库的expect，这样就会有很多重复代码。当然还有其他一些通用的帮助性代码，因此我们需要一个库来集中进行管理。这里我们创建一个新的文件`/test/test_helper.js`:
 
 ##### /test/test_helper.js
-```
+```javascript
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -842,13 +842,13 @@ global.sinon = sinon;
 在这里我只是添加了chai的expect，以及引入了sinon。
 
 现在就可以将`index.spec.js`文件的第一行删除，然后通过如下的命令来执行mocha命令了：
-```
+```javascript
 mocha --compilers js:babel-register --require ./test/test_helper.js --recursive
 ```
 
 执行结果如下：
 
-```
+```javascript
 λ mocha --compilers js:babel-register --require ./test/test_helper.js --recursive
   hello react spec
     √ works!
@@ -859,7 +859,7 @@ mocha --compilers js:babel-register --require ./test/test_helper.js --recursive
 
 在`package.json`中我们可以创建上述mocha命令的快捷方式。在`scripts`字段中作如下修改：
 
-```
+```javascript
 #package.json
 
   "scripts": {
@@ -893,7 +893,7 @@ npm install karma --save-dev
 ```
 
 然后还需要安装我们需要用到的一些依赖库：
-```
+```javascript
 npm install lolex phantomjs-prebuilt phantomjs --save-dev
 
 npm install karma-chai karma-chai-plugins karma-chai-sinon karma-mocha karma-mocha-reporter karma-phantomjs-launcher karma-sinon karma-sinon-chai karma-sourcemap-loader karma-webpack --save-dev
@@ -905,7 +905,7 @@ npm install karma-chai karma-chai-plugins karma-chai-sinon karma-mocha karma-moc
 
 然后我们就可以使用karma命令来生成一个配置文件。
 
-```
+```javascript
 λ .\node_modules\.bin\karma.cmd init karma.conf.js
 
 Which testing framework do you want to use ?
@@ -949,7 +949,7 @@ Config file generated at "D:\node\react_boilerplate\karma.conf.js".
 
 我们使用一个单独的文件`test.webpack.js`来保存测试文件的路径，方便在karma设置中进行预处理。新建文件`test.webpack.js`如下：
 
-```
+```javascript
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
 }
@@ -959,7 +959,7 @@ var modules = requireAll(require.context("./test", true, /.+\.spec\.jsx?$/));
 module.exports = modules
 ```
 然后修改`karma.config.js`:
-```
+```javascript
 var webpackConfig = require('./webpack.config');
 webpackConfig.devtool = 'inline-source-map';
 
@@ -998,7 +998,7 @@ module.exports = function (config) {
 
 好了，到现在为止，我们可以正常运行我们的测试用例了。使用命令`karma start`运行结果如下：
 
-```
+```javascript
 $ karma start
 
 START:

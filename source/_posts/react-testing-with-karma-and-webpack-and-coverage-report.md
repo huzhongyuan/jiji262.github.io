@@ -48,7 +48,7 @@ tags: [前端, webpack, react, karma, coverage]
 
 现在在我们的项目目录下可以通过如下命令来运行和测试代码了。
 
-```
+```bash
 # npm run dev # 开发环境，运行后使用http://localhost:3000/看到效果
 
 # npm build  # 生产环境编译
@@ -74,7 +74,7 @@ npm install babel-istanbul-loader --save-dev
 ### 修改karma配置文件
 
 在`karma.config.js`文件中，添加对coverage插件的支持，修改后代码如下：
-```
+```javascript
 var path = require('path');
 var webpackConfig = require('./webpack.config');
 webpackConfig.devtool = 'inline-source-map';
@@ -125,7 +125,7 @@ module.exports = function(config) {
 ### 修改test.webpack.js文件
 
 在`test.webpack.js`文件中引入所要测试的源代码和测试用例文件，如下：
-```
+```javascript
 var context = require.context('./test', true, /spec\.js$/);
 context.keys().forEach(context);
 
@@ -140,7 +140,7 @@ context.keys().forEach(context);
 ### 运行测试
 
 运行命令`npm run test` 运行karma测试，命令行中显示结果：
-```
+```bash
 > react_boilerplate@1.0.0 test /Users/i301792/Work/react_boilerplate
 > karma start
 
@@ -162,9 +162,9 @@ SUMMARY:
 
 同时，在我们的项目目录下生成了一个新的文件夹：coverage：
 
-```
-PVGM50934227A:react_boilerplate i301792$ cd coverage/
-PVGM50934227A:coverage i301792$ tree
+```bash
+User:react_boilerplate i301792$ cd coverage/
+User:coverage i301792$ tree
 .
 |____Chrome 51.0.2704 (Mac OS X 10.11.6)
 | |____app
