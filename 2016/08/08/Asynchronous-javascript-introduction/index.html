@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Asynchronous Javascript Introduction | 令狐葱@前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="## 
+异步所谓”异步”，简单说就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。
+比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。
+相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asynchronous Javascript Introduction">
+<meta property="og:url" content="http://jiji262.github.io/2016/08/08/Asynchronous-javascript-introduction/index.html">
+<meta property="og:site_name" content="令狐葱@前端笔记">
+<meta property="og:description" content="## 
+异步所谓”异步”，简单说就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。
+比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。
+相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统">
+<meta property="og:updated_time" content="2016-08-17T01:12:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Asynchronous Javascript Introduction">
+<meta name="twitter:description" content="## 
+异步所谓”异步”，简单说就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。
+比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。
+相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统">
+  
+    <link rel="alternative" href="/atom.xml" title="令狐葱@前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">令狐葱</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Asynchronous/" style="font-size: 10px;">Asynchronous</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 13.33px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 13.33px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 16.67px;">前端基础</a> <a href="/tags/服务器配置/" style="font-size: 10px;">服务器配置</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">令狐葱</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">令狐葱</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Asynchronous-javascript-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/08/Asynchronous-javascript-introduction/" class="article-date">
+  	<time datetime="2016-08-08T12:10:00.000Z" itemprop="datePublished">2016-08-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Asynchronous Javascript Introduction
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asynchronous/">Asynchronous</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端基础/">前端基础</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>## </p>
+<p>异步<br>所谓”异步”，简单说就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。</p>
+<p>比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。</p>
+<p>相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统从硬盘读取文件的这段时间，程序只能干等着。</p>
+<h2 id="Callbacks"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks</h2><h3 id="回调地狱"><a href="#回调地狱" class="headerlink" title="回调地狱"></a>回调地狱</h3><p><a href="http://www.alloyteam.com/2015/04/solve-callback-hell-with-generator/" target="_blank" rel="external">http://www.alloyteam.com/2015/04/solve-callback-hell-with-generator/</a><br><a href="http://callbackhell.com/" target="_blank" rel="external">http://callbackhell.com/</a></p>
+<p><a href="https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md" target="_blank" rel="external">https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md</a><br>-&gt; Example: load images<br>callback hell -&gt; solution: async -&gt; promise</p>
+<h3 id="async-module"><a href="#async-module" class="headerlink" title="async module"></a>async module</h3><p><a href="https://www.npmjs.com/package/async" target="_blank" rel="external">https://www.npmjs.com/package/async</a></p>
+<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><p><a href="http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/" target="_blank" rel="external">http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/</a><br><a href="http://www.jianshu.com/p/a0a7a451c536" target="_blank" rel="external">http://www.jianshu.com/p/a0a7a451c536</a></p>
+<p><a href="http://jimliu.net/2012/05/28/javascript%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%A2%B3%E7%90%86%EF%BC%881%EF%BC%89-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/" target="_blank" rel="external">http://jimliu.net/2012/05/28/javascript%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%A2%B3%E7%90%86%EF%BC%881%EF%BC%89-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/</a></p>
+<h2 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h2><p><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html</a></p>
+<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><p><a href="https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md" target="_blank" rel="external">https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md</a><br>ES2015, bluebird</p>
+<p><a href="https://blog.coding.net/blog/how-do-promises-work" target="_blank" rel="external">https://blog.coding.net/blog/how-do-promises-work</a><br>Promises/A 规范<br>Promises/B 规范<br>Promises/D 规范<br>Promises/A+ 规范</p>
+<p><a href="https://github.com/kriskowal/q" target="_blank" rel="external">https://github.com/kriskowal/q</a><br><a href="https://github.com/cujojs/when" target="_blank" rel="external">https://github.com/cujojs/when</a><br><a href="https://github.com/petkaantonov/bluebird" target="_blank" rel="external">https://github.com/petkaantonov/bluebird</a><br><a href="http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/" target="_blank" rel="external">http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/</a></p>
+<h2 id="Generators-yield"><a href="#Generators-yield" class="headerlink" title="Generators / yield"></a>Generators / yield</h2><p>ES2015</p>
+<p><a href="http://jimliu.net/2015/01/18/more-about-es6-generator-function/" target="_blank" rel="external">http://jimliu.net/2015/01/18/more-about-es6-generator-function/</a><br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/04/generator.html</a></p>
+<h3 id="co"><a href="#co" class="headerlink" title="co"></a>co</h3><p><a href="https://www.npmjs.com/package/co" target="_blank" rel="external">https://www.npmjs.com/package/co</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/co.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/05/co.html</a></p>
+<h2 id="Async-await"><a href="#Async-await" class="headerlink" title="Async / await"></a>Async / await</h2><p>ES7</p>
+<p><a href="https://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6" target="_blank" rel="external">https://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6</a><br><a href="https://ponyfoo.com/articles/understanding-javascript-async-await" target="_blank" rel="external">https://ponyfoo.com/articles/understanding-javascript-async-await</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/async.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/05/async.html</a><br><a href="https://www.twilio.com/blog/2015/10/asyncawait-the-hero-javascript-deserved.html" target="_blank" rel="external">https://www.twilio.com/blog/2015/10/asyncawait-the-hero-javascript-deserved.html</a></p>
+<p><a href="http://aisk.me/using-async-await-to-avoid-callback-hell/" target="_blank" rel="external">http://aisk.me/using-async-await-to-avoid-callback-hell/</a><br>-&gt;sleep function</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.risingstack.com/asynchronous-javascript/" target="_blank" rel="external">https://blog.risingstack.com/asynchronous-javascript/</a><br><a href="http://huli.logdown.com/posts/292655-javascript-promise-generator-async-es6" target="_blank" rel="external">http://huli.logdown.com/posts/292655-javascript-promise-generator-async-es6</a><br><a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="external">http://es6.ruanyifeng.com/#docs/async</a><br><a href="http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/" target="_blank" rel="external">http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/</a><br><a href="http://eng.localytics.com/better-asynchronous-javascript/" target="_blank" rel="external">http://eng.localytics.com/better-asynchronous-javascript/</a><br><a href="http://liubin.org/promises-book/" target="_blank" rel="external">http://liubin.org/promises-book/</a><br><a href="https://bitsofco.de/javascript-promises-101/" target="_blank" rel="external">https://bitsofco.de/javascript-promises-101/</a><br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/04/generator.html</a><br><a href="https://medium.com/@rdsubhas/es6-from-callbacks-to-promises-to-generators-87f1c0cd8f2e#.qruudlybf" target="_blank" rel="external">https://medium.com/@rdsubhas/es6-from-callbacks-to-promises-to-generators-87f1c0cd8f2e#.qruudlybf</a></p>
+
+      
+    </div>
+        
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/18/ubuntu_1604_web_server_config_LEMP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          手把手教你从头搭建Web服务器及LEMP技术栈环境(使用Ubuntu16.04+Nginx+MySQL+PHP)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/06/nodejs-batch-download-images-with-async-and-bagpipe/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Nodejs大批量下载图片入坑指南(使用async和bagpipe处理大并发量请求)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+    <div style="font-size:12px;border-bottom: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BACKGROUND: #f6f6f6; HEIGHT: 120px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid">
+<div style="MARGIN-TOP: 10px; FLOAT: left; MARGIN-LEFT: 5px; MARGIN-RIGHT: 10px">
+<IMG alt="" src="https://avatars1.githubusercontent.com/u/168751?v=3&s=140" width=90 height=100>
+</div>
+<div style="LINE-HEIGHT: 200%; MARGIN-TOP: 10px; COLOR: #000000">
+本文链接：<a href="">Asynchronous Javascript Introduction</a> <br/>
+作者： 
+<a href="http://jiji262.github.io/">令狐葱</a> <br/>出处： 
+<a href="http://jiji262.github.io/">http://jiji262.github.io/</a>
+<br/>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>
+国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名 
+<a href="http://jiji262.github.io/">令狐葱</a>及链接。
+</div>
+</div>
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Asynchronous-javascript-introduction" data-title="Asynchronous Javascript Introduction" data-url="http://jiji262.github.io/2016/08/08/Asynchronous-javascript-introduction/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jiji262"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 令狐葱
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
