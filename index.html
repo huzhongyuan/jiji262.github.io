@@ -95,7 +95,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Asynchronous/" style="font-size: 10px;">Asynchronous</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
+						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 10px;">前端基础</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
 					</div>
 				</section>
 				
@@ -152,84 +152,6 @@
 </nav>
 
       <div class="body-wrap">
-  
-    <article id="post-Asynchronous-javascript-introduction" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/08/Asynchronous-javascript-introduction/" class="article-date">
-  	<time datetime="2016-08-08T12:10:00.000Z" itemprop="datePublished">2016-08-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/08/Asynchronous-javascript-introduction/">Asynchronous Javascript Introduction</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>## </p>
-<p>异步<br>所谓”异步”，简单说就是一个任务分成两段，先执行第一段，然后转而执行其他任务，等做好了准备，再回过头执行第二段。</p>
-<p>比如，有一个任务是读取文件进行处理，任务的第一段是向操作系统发出请求，要求读取文件。然后，程序执行其他任务，等到操作系统返回文件，再接着执行任务的第二段（处理文件）。这种不连续的执行，就叫做异步。</p>
-<p>相应地，连续的执行就叫做同步。由于是连续执行，不能插入其他任务，所以操作系统从硬盘读取文件的这段时间，程序只能干等着。</p>
-<h2 id="Callbacks"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks</h2><h3 id="回调地狱"><a href="#回调地狱" class="headerlink" title="回调地狱"></a>回调地狱</h3><p><a href="http://www.alloyteam.com/2015/04/solve-callback-hell-with-generator/" target="_blank" rel="external">http://www.alloyteam.com/2015/04/solve-callback-hell-with-generator/</a><br><a href="http://callbackhell.com/" target="_blank" rel="external">http://callbackhell.com/</a></p>
-<p><a href="https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md" target="_blank" rel="external">https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md</a><br>-&gt; Example: load images<br>callback hell -&gt; solution: async -&gt; promise</p>
-<h3 id="async-module"><a href="#async-module" class="headerlink" title="async module"></a>async module</h3><p><a href="https://www.npmjs.com/package/async" target="_blank" rel="external">https://www.npmjs.com/package/async</a></p>
-<h2 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h2><p><a href="http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/" target="_blank" rel="external">http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/</a><br><a href="http://www.jianshu.com/p/a0a7a451c536" target="_blank" rel="external">http://www.jianshu.com/p/a0a7a451c536</a></p>
-<p><a href="http://jimliu.net/2012/05/28/javascript%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%A2%B3%E7%90%86%EF%BC%881%EF%BC%89-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/" target="_blank" rel="external">http://jimliu.net/2012/05/28/javascript%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5%E6%A2%B3%E7%90%86%EF%BC%881%EF%BC%89-%E4%BD%BF%E7%94%A8%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8/</a></p>
-<h2 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h2><p><a href="http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html</a></p>
-<h2 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h2><p><a href="https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md" target="_blank" rel="external">https://github.com/mattdesl/promise-cookbook/blob/master/README.zh.md</a><br>ES2015, bluebird</p>
-<p><a href="https://blog.coding.net/blog/how-do-promises-work" target="_blank" rel="external">https://blog.coding.net/blog/how-do-promises-work</a><br>Promises/A 规范<br>Promises/B 规范<br>Promises/D 规范<br>Promises/A+ 规范</p>
-<p><a href="https://github.com/kriskowal/q" target="_blank" rel="external">https://github.com/kriskowal/q</a><br><a href="https://github.com/cujojs/when" target="_blank" rel="external">https://github.com/cujojs/when</a><br><a href="https://github.com/petkaantonov/bluebird" target="_blank" rel="external">https://github.com/petkaantonov/bluebird</a><br><a href="http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/" target="_blank" rel="external">http://complexitymaze.com/2014/03/03/javascript-promises-a-comparison-of-libraries/</a></p>
-<h2 id="Generators-yield"><a href="#Generators-yield" class="headerlink" title="Generators / yield"></a>Generators / yield</h2><p>ES2015</p>
-<p><a href="http://jimliu.net/2015/01/18/more-about-es6-generator-function/" target="_blank" rel="external">http://jimliu.net/2015/01/18/more-about-es6-generator-function/</a><br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/04/generator.html</a></p>
-<h3 id="co"><a href="#co" class="headerlink" title="co"></a>co</h3><p><a href="https://www.npmjs.com/package/co" target="_blank" rel="external">https://www.npmjs.com/package/co</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/co.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/05/co.html</a></p>
-<h2 id="Async-await"><a href="#Async-await" class="headerlink" title="Async / await"></a>Async / await</h2><p>ES7</p>
-<p><a href="https://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6" target="_blank" rel="external">https://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6</a><br><a href="https://ponyfoo.com/articles/understanding-javascript-async-await" target="_blank" rel="external">https://ponyfoo.com/articles/understanding-javascript-async-await</a><br><a href="http://www.ruanyifeng.com/blog/2015/05/async.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/05/async.html</a><br><a href="https://www.twilio.com/blog/2015/10/asyncawait-the-hero-javascript-deserved.html" target="_blank" rel="external">https://www.twilio.com/blog/2015/10/asyncawait-the-hero-javascript-deserved.html</a></p>
-<p><a href="http://aisk.me/using-async-await-to-avoid-callback-hell/" target="_blank" rel="external">http://aisk.me/using-async-await-to-avoid-callback-hell/</a><br>-&gt;sleep function</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://blog.risingstack.com/asynchronous-javascript/" target="_blank" rel="external">https://blog.risingstack.com/asynchronous-javascript/</a><br><a href="http://huli.logdown.com/posts/292655-javascript-promise-generator-async-es6" target="_blank" rel="external">http://huli.logdown.com/posts/292655-javascript-promise-generator-async-es6</a><br><a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="external">http://es6.ruanyifeng.com/#docs/async</a><br><a href="http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/" target="_blank" rel="external">http://www.barretlee.com/blog/2014/01/05/cb-javascript-asynchronous-programming/</a><br><a href="http://eng.localytics.com/better-asynchronous-javascript/" target="_blank" rel="external">http://eng.localytics.com/better-asynchronous-javascript/</a><br><a href="http://liubin.org/promises-book/" target="_blank" rel="external">http://liubin.org/promises-book/</a><br><a href="https://bitsofco.de/javascript-promises-101/" target="_blank" rel="external">https://bitsofco.de/javascript-promises-101/</a><br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/04/generator.html</a><br><a href="https://medium.com/@rdsubhas/es6-from-callbacks-to-promises-to-generators-87f1c0cd8f2e#.qruudlybf" target="_blank" rel="external">https://medium.com/@rdsubhas/es6-from-callbacks-to-promises-to-generators-87f1c0cd8f2e#.qruudlybf</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Asynchronous/">Asynchronous</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端基础/">前端基础</a></li></ul>
-	</div>
-
-      
-      
-      
-      <div class="clearfix"></div>
-    </div>
-        
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
   
     <article id="post-nodejs-batch-download-images-with-async-and-bagpipe" class="article article-type-post" itemscope itemprop="blogPost">
   
