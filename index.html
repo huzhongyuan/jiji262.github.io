@@ -95,7 +95,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 10px;">前端基础</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
+						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/LEMP/" style="font-size: 10px;">LEMP</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/服务器配置/" style="font-size: 10px;">服务器配置</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
 					</div>
 				</section>
 				
@@ -152,6 +152,77 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="draft-ubuntu_1604_web_server_config_LEMP" class="article article-type-draft" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/18/ubuntu_1604_web_server_config_LEMP/" class="article-date">
+  	<time datetime="2016-08-18T12:10:00.000Z" itemprop="datePublished">2016-08-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/18/ubuntu_1604_web_server_config_LEMP/">手把手教你从头搭建Web服务器及LEMP环境(使用Ubuntu16.04+Nginx+MySQL+PHP)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>拿到一台新装的Linux服务器,该如何配置成一台可以解析动态网页脚本的Web服务器呢? 相信这是很多人都会有的问题。本文将一步一步带你从头开始搭建给予LEMP技术栈的Web服务器,并使其可以正常运行PHP、Nodejs等语言。</p>
+<p>所谓的LEMP技术栈,顾名思义其实就是Linux, Nginx, MySQL, PHP的组合。当然,如果喜欢,你也可以不用Nginx,而去选择Apache,这就是所谓的LAMP技术栈了。</p>
+<p>本文使用Linux版本为Ubuntu 16.04 64位版本。</p>
+<p>TL;DR.</p>
+<h1 id="Ubuntu服务器基本设置"><a href="#Ubuntu服务器基本设置" class="headerlink" title="Ubuntu服务器基本设置"></a>Ubuntu服务器基本设置</h1><h2 id="使用root登录服务器"><a href="#使用root登录服务器" class="headerlink" title="使用root登录服务器"></a>使用root登录服务器</h2><p>首先我们需要使用root用户登录服务器,当然你可以选择很多工具,诸如SecureCRT或者putty等。这里通过ssh命令行登录:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span>$ ssh root@SERVER_IP_ADDRESS</div></pre></td></tr></table></figure></p>
+<p>前面的<code>local$</code>表示是在本地机器操作,在服务器端,该提示符会类似<code>root@my-remote-server:~$</code>这种形式,后边会看到。</p>
+<h2 id="新增超级用户权限用户"><a href="#新增超级用户权限用户" class="headerlink" title="新增超级用户权限用户"></a>新增超级用户权限用户</h2><p>root用户虽然强大,但是正是由于太强大了,所以显得不够安全,因此通常情况下我们需要创建一个新的用户,然后给他设置超级用户(superuser)权限,这样就可以安全的进行各种操作了。</p>
+<p>使用root用户登录,做如下操作:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@my-remote-server:~$ adduser dennis</div><div class="line">root@my-remote-server:~$ usermod <span class="_">-a</span>G sudo dennis</div></pre></td></tr></table></figure></p>
+<p>这里就将新创建的用户加入了sudo用户组,就具有了超级用户的权限。更详细的信息可以参考<a href="https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos">这个教程</a>。</p>
+<p>然后我们就可以以新创建的用户登录了:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@my-remote-server:~<span class="comment"># su - dennis</span></div><div class="line">dennis@my-remote-server:~$</div></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LEMP/">LEMP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端基础/">前端基础</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/服务器配置/">服务器配置</a></li></ul>
+	</div>
+
+      
+      
+      
+        <p class="article-more-link">
+          <a  href="/2016/08/18/ubuntu_1604_web_server_config_LEMP/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+        
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-nodejs-batch-download-images-with-async-and-bagpipe" class="article article-type-post" itemscope itemprop="blogPost">
   
