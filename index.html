@@ -95,7 +95,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/LEMP/" style="font-size: 10px;">LEMP</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/服务器配置/" style="font-size: 10px;">服务器配置</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a>
+						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/LEMP/" style="font-size: 10px;">LEMP</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/服务器配置/" style="font-size: 10px;">服务器配置</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a>
 					</div>
 				</section>
 				
@@ -152,6 +152,121 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-setup-Shadowsocks-on-ubuntu-1604" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/28/setup-Shadowsocks-on-ubuntu-1604/" class="article-date">
+  	<time datetime="2016-09-28T12:10:00.000Z" itemprop="datePublished">2016-09-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/28/setup-Shadowsocks-on-ubuntu-1604/"> 科学上网:ubuntu 16.04服务器上搭建Shadowsocks服务</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>科学上网应该是必备技能了，但是一些免费的方案如goagent等实在是太不稳定。购买自己的服务器，然后自己搭建梯子不失为一种较好的解决方案。本文就来在ubuntu 16.04服务器上使用Shadowsocks搭建自己的科学上网工具。</p>
+<p>Shadowsocks由于政策原因，在百度里是搜不到的，因此本文也随时可能被河蟹，关注公众号(linghucong_wx)以防万一吧！</p>
+<p><img src="https://mmbiz.qlogo.cn/mmbiz_jpg/3ujKestgT7qtJ2Z7SyzibfjG0K1eq4LTqSTUMofBejibevol6EfV2I5ZLT6trDFNrWV7jYSttIBtWXeMI63uIib9w/0?wx_fmt=jpeg" alt=""></p>
+<h2 id="shadowsocks-服务器安装"><a href="#shadowsocks-服务器安装" class="headerlink" title="shadowsocks 服务器安装"></a>shadowsocks 服务器安装</h2><p>更新软件源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div></pre></td></tr></table></figure></p>
+<p>然后安装 PIP 环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-pip</div></pre></td></tr></table></figure></p>
+<p>直接安装 shadowsocks<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip <span class="keyword">install</span> shadowsocks</div></pre></td></tr></table></figure></p>
+<h2 id="运行-shadowsocks-服务器"><a href="#运行-shadowsocks-服务器" class="headerlink" title="运行 shadowsocks 服务器"></a>运行 shadowsocks 服务器</h2><p>启动命令如下：如果要停止运行，将命令中的start改成stop。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -<span class="selector-tag">p</span> <span class="number">8388</span> -k password -m rc4-md5 -d start</div></pre></td></tr></table></figure></p>
+<p>也可以使用配置文件进行配置，方法创建<code>/etc/shadowsocks.json</code>文件，填入如下内容：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">8388</span>,</div><div class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>各字段的含义：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td style="text-align:left">服务器 IP (IPv4/IPv6)，注意这也将是服务端监听的 IP 地址</td>
+</tr>
+<tr>
+<td>server_port</td>
+<td style="text-align:left">服务器端口</td>
+</tr>
+<tr>
+<td>local_port</td>
+<td style="text-align:left">本地端端口</td>
+</tr>
+<tr>
+<td>password</td>
+<td style="text-align:left">用来加密的密码</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td style="text-align:left">超时时间（秒）</td>
+</tr>
+<tr>
+<td>method</td>
+<td style="text-align:left">加密方法，可选择 “bf-cfb”, “aes-256-cfb”, “des-cfb”, “rc4″, 等等。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tips</strong>: 加密方式推荐使用rc4-md5，因为 RC4 比 AES 速度快好几倍，如果用在路由器上会带来显著性能提升。旧的 RC4 加密之所以不安全是因为 Shadowsocks 在每个连接上重复使用 key，没有使用 IV。现在已经重新正确实现，可以放心使用。更多可以看 issue。</p>
+<p><strong>Tips</strong>: 如果需要配置多个用户,可以这样来设置:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"port_password"</span>: &#123;</div><div class="line">        <span class="attr">"端口1"</span>: <span class="string">"密码1"</span>,</div><div class="line">        <span class="attr">"端口2"</span>: <span class="string">"密码2"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span>,</div><div class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建完毕后，赋予文件权限：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod <span class="number">755</span> <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
+<p>为了支持这些加密方式，你要需要安装<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt–<span class="built_in">get</span> install <span class="keyword">python</span>–m2crypto</div></pre></td></tr></table></figure></p>
+<p>然后使用配置文件在后台运行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -c /etc/shadowsocks<span class="selector-class">.json</span> -d start</div></pre></td></tr></table></figure></p>
+<h2 id="配置开机自启动"><a href="#配置开机自启动" class="headerlink" title="配置开机自启动"></a>配置开机自启动</h2><p>编辑 /etc/rc.local 文件<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/rc.<span class="keyword">local</span></div></pre></td></tr></table></figure></p>
+<p>在 exit 0 这一行的上边加入如下<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>ssserver –c <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
+<p>或者 不用配置文件 直接加入命令启动如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/ssserver -p 8388 -k password -m aes-256-cfb <span class="_">-d</span> start</div></pre></td></tr></table></figure></p>
+<p>到此重启服务器后，会自动启动。</p>
+<h2 id="安装和配置shadowsocks客户端"><a href="#安装和配置shadowsocks客户端" class="headerlink" title="安装和配置shadowsocks客户端"></a>安装和配置shadowsocks客户端</h2><p>最新版本的shadowsocks客户端可以从<a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">其Github上下载</a>.<br>客户端配置及使用方法可以<a href="http://www.ishadowsocks.org/" target="_blank" rel="external">参考这里的教程</a>。<br>iPhone及安卓手机上的配置,可以<a href="http://www.jianshu.com/p/08ba65d1f91a" target="_blank" rel="external">参考这个教程</a>。</p>
+<p>需要特别注意的是,在Chrome上需要设置代理为SOCKS v5模式,127.0.0.1:1080,建议安装SwitchySharp扩展. 具体示例可以<a href="http://shadowkong.com/archives/1802" target="_blank" rel="external">参考这里</a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="external">shadowsocks</a><br><a href="https://shadowsocks.org/" target="_blank" rel="external">shadowsocks.org</a><br><a href="https://www.douban.com/note/534175318/" target="_blank" rel="external">教你一步一步自己搭梯子</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">shadowsocks-install-and-optimize</a></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>最后的自然是福利。如果没有自己的服务器又想科学上网，可以私信我，我可以共享几个账号供测试使用。</p>
+<p>另外，由于微信限制，文中所有链接均无法显示，请直接点击阅读原文查看。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻墙/">翻墙</a></li></ul>
+	</div>
+
+      
+      
+      
+      <div class="clearfix"></div>
+    </div>
+        
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="draft-ubuntu_1604_web_server_config_LEMP" class="article article-type-draft" itemscope itemprop="blogPost">
   
@@ -321,9 +436,9 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在<a href="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/">上一篇文章</a>中，葱哥从零开始创建了一个react的boilerplate，并使用webpack进行build，使其支持ES6，同时使用karma＋mocha等进行单元测试。虽然单元测试有了，但是代码中哪些写了测试，哪些没写呢？本文就将在<a href="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/">上一篇文章</a>的基础上为其增加生成代码覆盖率的功能。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>本文的最终代码可以在<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v8">react_boilerplate_v8</a>中查看。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="react-boilerplate代码"><a href="#react-boilerplate代码" class="headerlink" title="react boilerplate代码"></a>react boilerplate代码</h3><p>首先拿到<a href="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/">上一篇文章</a>的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># git clone https://github.com/jiji262/react_boilerplate.git</div><div class="line"></div><div class="line"># cd _tutorial_/react_boilerplate_v6</div></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># git clone https://github.com/jiji262/react_boilerplate.git</span></div><div class="line"></div><div class="line"><span class="meta"># cd _tutorial_/react_boilerplate_v6</span></div></pre></td></tr></table></figure>
 <p>在正式开始之前，我们将对之前的代码做一些简单的修改，<code>app</code>目录用于存放源代码，<code>test</code>目录用于存放测试文件，文件结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">|____app</div><div class="line">| |____components</div><div class="line">| | |____FooBar.js</div><div class="line">| | |____HelloWorld.js</div><div class="line">| |____index.js</div><div class="line">|____test</div><div class="line">| |____components</div><div class="line">| | |____HelloWorld-spec.js</div><div class="line">| |____index.spec.js</div></pre></td></tr></table></figure>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">|<span class="string">____app</div><div class="line"></span>|<span class="string"> </span>|____components</div><div class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____FooBar.js</div><div class="line"></span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____HelloWorld.js</div><div class="line"></span>|<span class="string"> </span>|<span class="string">____index.js</div><div class="line"></span>|____test</div><div class="line">|<span class="string"> </span>|____components</div><div class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string">____HelloWorld-spec.js</div><div class="line"></span>|<span class="string"> </span>|<span class="string">____index.spec.js</span></div></pre></td></tr></table></figure>
 <p>其中<code>components</code>目录用于存放React组件，其中有两个小的示例。具体代码可以参考<a href="https://github.com/jiji262/react_boilerplate/tree/master/_tutorial_/react_boilerplate_v7">Github</a>.</p>
 <h3 id="build和test"><a href="#build和test" class="headerlink" title="build和test"></a>build和test</h3><p>现在在我们的项目目录下可以通过如下命令来运行和测试代码了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># npm run dev # 开发环境，运行后使用http://localhost:3000/看到效果</span></div><div class="line"></div><div class="line"><span class="comment"># npm build  # 生产环境编译</span></div><div class="line"></div><div class="line"><span class="comment"># npm run test # 使用karma+mocha进行测试</span></div></pre></td></tr></table></figure>
