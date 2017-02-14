@@ -27,6 +27,25 @@ local$ ssh root@SERVER_IP_ADDRESS
 
 前面的`local$`表示是在本地机器操作,在服务器端,该提示符会类似`root@my-remote-server:~$`这种形式,后边会看到。
 
+*Tips*: 如果使用的是腾讯云，其初始登录默认使用的是用户ubuntu，并不是root。因此，使用`ssh ubuntu@your_server_ip`登录之后可以修改下root的密码，然后就可以切换到用户root了。
+
+修改密码命令如下：
+```
+ubuntu@VM-42-158-ubuntu:~$ sudo passwd root
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+```
+
+有可能还需要编辑配置文件`/etc/ssh/sshd_config`中的`PermitRootLogin`的设置。
+
+好了之后就可以使用`su`切换到root。
+```
+buntu@VM-42-158-ubuntu:~$ su
+Password:
+root@VM-42-158-ubuntu:/#
+```
+
 ## 新增超级用户权限用户
 
 root用户虽然强大,但是正是由于太强大了,所以显得不够安全,因此通常情况下我们需要创建一个新的用户,然后给他设置超级用户(superuser)权限,这样就可以安全的进行各种操作了。
@@ -267,7 +286,7 @@ ip addr show venet0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
 或者可以这样：
 ```bash
 dennis@my-remote-server:/$ curl http://icanhazip.com
-104.168.30.182
+xxx.xxx.xxx.xxx
 ```
 
 #### 6. 检查Nginx的状态:
@@ -451,6 +470,51 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
+#### 在外网通过IP直接访问操作数据库
+
+默认情况下,我们只能在服务器上通过`localhost`访问MySQL,如果需要通过IP从外网访问,需要进行相应的设置。
+
+1) 修改授权
+
+```sql
+GRANT ALL ON wordpress.* TO 'wordpressuser'@'%' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+如果需要,还可以指定特定的IP地址(替换上面的%即可)。
+
+或者可以直接修改表:
+```
+mysql -u root -p
+
+mysql> use mysql;
+
+mysql> update user set host = '%' where user = 'root';
+
+mysql> select user, host from user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| mysql.sys        | localhost |
+| root             | localhost |
+| wordpressuser    | %         |
++------------------+-----------+
+3 rows in set (0.00 sec)
+```
+
+2) 修改配置文件
+
+配置文件位置为`/etc/mysql/mysql.conf.d/mysqld.cnf`,注释掉其中一行:
+```
+# bind-address  =127.0.0.1
+```
+
+重启MySQL即可:
+```
+sudo service mysql restart
+```
+
 ### 配置Nginx
 
 打开配置文件：
@@ -523,9 +587,10 @@ sudo find /var/www/html -type d -exec chmod g+s {} \;
 ```
 另外还需要对一些特殊的目录做处理:
 ```bash
-sudo chmod g+w /var/www/html/wp-content
-sudo chmod -R g+w /var/www/html/wp-content/themes
-sudo chmod -R g+w /var/www/html/wp-content/plugins
+cd /var/www/html
+sudo chmod g+w ./wp-content
+sudo chmod -R g+w ./wp-content/themes
+sudo chmod -R g+w ./wp-content/plugins
 ```
 ### 设置secure key
 
@@ -535,7 +600,6 @@ curl -s https://api.wordpress.org/secret-key/1.1/salt/
 ```
 运行后得到如下结果:
 ```php
-
 define('AUTH_KEY',         'b?=x1eCLLa9c6f]%=8A$D^P=,y$+#)|XV2ffFo-sq8xY8M-a|6IE0_T-|!O.*Esa');
 define('SECURE_AUTH_KEY',  'mF5CQ|m{(tWQQhK+_>d4UbJ5VU|], c)5^!wYbQ1WU+tBk8tFh]_<p#yZ|x;T{L%');
 define('LOGGED_IN_KEY',    '(J<=P5mY3?>bqMqwk!]O=R+|]=8q^Hj/_+Dro=`-8XA[lBUQnt+Wk2MJnlC?$k&L');
@@ -549,7 +613,7 @@ define('NONCE_SALT',       ' F=UmQao!jv(|#Di=A$Z6(l^_|z=wTnI2/P8<l7BO/IfiqX03!+h
 拷贝到`wp-config.php`文件中替换相应的内容。
 
 ### 设置数据库信息及文件操作权限
-`wp-config.php`文件中修改数据库信息,并添加`FS_METHOD`以便于Wordpress可以访问文件系统进行文件的读写操作,这在安装插件的时候是否有用。
+`wp-config.php`文件中修改数据库信息,并添加`FS_METHOD`以便于Wordpress可以访问文件系统进行文件的读写操作,这在安装插件的时候会很有用。
 ```php
 define('DB_NAME', 'wordpress');
 
@@ -731,6 +795,34 @@ XXX.XXX.XXX.XXX test.com www.test.com
 现在我们就可以直接访问`example.com`和`test.com`来查看这两个站点了。
 
 Tips: 关于真实域名相关的设置,有需要可以[参考这篇文章](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean).
+
+## 配置二级子域名及代理访问
+
+举例来说，比如我们在我的服务器上有两个web程序，一个是之前的 `example.com`，另一个程序是nodejs应用，使用端口5555，需要映射到二级域名 `demo.example.com`。我们应该如何设置呢？
+
+### 1）添加域名解析
+
+这个步骤不多说了，在域名服务提供商网站添加一条A记录，设置域名demo.example.com。
+
+### 2）修改Nginx配置文件
+
+就是我们上面提到的文件`/etc/nginx/sites-available/example.com`,添加如下内容：
+
+```
+server {  
+    listen 80;
+    server_name demo.example.com;
+
+    location / {
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   Host      $http_host;
+        proxy_pass         http://127.0.0.1:5555;
+    }
+}
+```
+
+然后重启Nginx即可。
+
 
 # Ubuntu上安装和部署Node.js应用
 

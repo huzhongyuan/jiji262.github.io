@@ -27,7 +27,9 @@ TL;DR
 
 ### 代码
 
-本文所有代码可以在我的Github中找到：[codeigniter_boilerplate](https://github.com/jiji262/codeigniter_boilerplate)
+本文所有代码可以在我的Github中找到：
+
+[react_boilerplate](https://github.com/jiji262/react_boilerplate)
 
 
 ### 将使用的技术栈

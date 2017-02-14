@@ -1,10 +1,18 @@
 title: " 科学上网:ubuntu 16.04服务器上搭建Shadowsocks服务"
 layout: post
-date: 2016-08-08 20:10
+date: 2016-03-28 20:10
 comments: true
 tags: [工具, Shadowsocks, 翻墙]
 
 ---
+
+## 前言
+
+科学上网应该是必备技能了，但是一些免费的方案如goagent等实在是太不稳定。购买自己的服务器，然后自己搭建梯子不失为一种较好的解决方案。本文就来在ubuntu 16.04服务器上使用Shadowsocks搭建自己的科学上网工具。
+
+Shadowsocks由于政策原因，在百度里是搜不到的，因此本文也随时可能被河蟹，关注公众号(linghucong_wx)以防万一吧！
+
+![](http://7xsxyo.com1.z0.glb.clouddn.com/qrcode_for_gh_bf8431032a79_860.jpg)
 
 ## shadowsocks 服务器安装
 
@@ -99,11 +107,19 @@ sudo vi /etc/rc.local
 客户端配置及使用方法可以[参考这里的教程](http://www.ishadowsocks.org/)。
 iPhone及安卓手机上的配置,可以[参考这个教程](http://www.jianshu.com/p/08ba65d1f91a)。
 
+需要特别注意的是,在Chrome上需要设置代理为SOCKS v5模式,127.0.0.1:1080,建议安装SwitchySharp扩展. 具体示例可以[参考这里](http://shadowkong.com/archives/1802)。
+
 ## Reference
-https://github.com/shadowsocks/shadowsocks
-https://shadowsocks.org/
-https://www.douban.com/note/534175318/
-http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/
+[shadowsocks](https://github.com/shadowsocks/shadowsocks)
+[shadowsocks.org](https://shadowsocks.org/)
+[教你一步一步自己搭梯子](https://www.douban.com/note/534175318/)
+[shadowsocks-install-and-optimize](http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/)
+
+## 写在最后
+
+最后的自然是福利。如果没有自己的服务器又想科学上网，可以私信我，我可以共享几个账号供测试使用。
+
+另外，由于微信限制，文中所有链接均无法显示，请直接点击阅读原文查看。
 
 
 

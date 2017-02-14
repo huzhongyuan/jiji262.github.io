@@ -37,11 +37,14 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-toc: true
+toc:
+  enable: true
+  # Automatically add list number to toc.  #目录是否自动显示数字序号
+  number: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
