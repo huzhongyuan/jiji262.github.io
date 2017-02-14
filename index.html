@@ -153,121 +153,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-setup-Shadowsocks-on-ubuntu-1604" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/28/setup-Shadowsocks-on-ubuntu-1604/" class="article-date">
-  	<time datetime="2016-09-28T12:10:00.000Z" itemprop="datePublished">2016-09-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/28/setup-Shadowsocks-on-ubuntu-1604/"> 科学上网:ubuntu 16.04服务器上搭建Shadowsocks服务</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>科学上网应该是必备技能了，但是一些免费的方案如goagent等实在是太不稳定。购买自己的服务器，然后自己搭建梯子不失为一种较好的解决方案。本文就来在ubuntu 16.04服务器上使用Shadowsocks搭建自己的科学上网工具。</p>
-<p>Shadowsocks由于政策原因，在百度里是搜不到的，因此本文也随时可能被河蟹，关注公众号(linghucong_wx)以防万一吧！</p>
-<p><img src="http://7xsxyo.com1.z0.glb.clouddn.com/qrcode_for_gh_bf8431032a79_860.jpg" alt=""></p>
-<h2 id="shadowsocks-服务器安装"><a href="#shadowsocks-服务器安装" class="headerlink" title="shadowsocks 服务器安装"></a>shadowsocks 服务器安装</h2><p>更新软件源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div></pre></td></tr></table></figure></p>
-<p>然后安装 PIP 环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-pip</div></pre></td></tr></table></figure></p>
-<p>直接安装 shadowsocks<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip <span class="keyword">install</span> shadowsocks</div></pre></td></tr></table></figure></p>
-<h2 id="运行-shadowsocks-服务器"><a href="#运行-shadowsocks-服务器" class="headerlink" title="运行 shadowsocks 服务器"></a>运行 shadowsocks 服务器</h2><p>启动命令如下：如果要停止运行，将命令中的start改成stop。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -<span class="selector-tag">p</span> <span class="number">8388</span> -k password -m rc4-md5 -d start</div></pre></td></tr></table></figure></p>
-<p>也可以使用配置文件进行配置，方法创建<code>/etc/shadowsocks.json</code>文件，填入如下内容：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">8388</span>,</div><div class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>各字段的含义：</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>server</td>
-<td style="text-align:left">服务器 IP (IPv4/IPv6)，注意这也将是服务端监听的 IP 地址</td>
-</tr>
-<tr>
-<td>server_port</td>
-<td style="text-align:left">服务器端口</td>
-</tr>
-<tr>
-<td>local_port</td>
-<td style="text-align:left">本地端端口</td>
-</tr>
-<tr>
-<td>password</td>
-<td style="text-align:left">用来加密的密码</td>
-</tr>
-<tr>
-<td>timeout</td>
-<td style="text-align:left">超时时间（秒）</td>
-</tr>
-<tr>
-<td>method</td>
-<td style="text-align:left">加密方法，可选择 “bf-cfb”, “aes-256-cfb”, “des-cfb”, “rc4″, 等等。</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Tips</strong>: 加密方式推荐使用rc4-md5，因为 RC4 比 AES 速度快好几倍，如果用在路由器上会带来显著性能提升。旧的 RC4 加密之所以不安全是因为 Shadowsocks 在每个连接上重复使用 key，没有使用 IV。现在已经重新正确实现，可以放心使用。更多可以看 issue。</p>
-<p><strong>Tips</strong>: 如果需要配置多个用户,可以这样来设置:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"port_password"</span>: &#123;</div><div class="line">        <span class="attr">"端口1"</span>: <span class="string">"密码1"</span>,</div><div class="line">        <span class="attr">"端口2"</span>: <span class="string">"密码2"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span>,</div><div class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>创建完毕后，赋予文件权限：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod <span class="number">755</span> <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
-<p>为了支持这些加密方式，你要需要安装<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt–<span class="built_in">get</span> install <span class="keyword">python</span>–m2crypto</div></pre></td></tr></table></figure></p>
-<p>然后使用配置文件在后台运行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -c /etc/shadowsocks<span class="selector-class">.json</span> -d start</div></pre></td></tr></table></figure></p>
-<h2 id="配置开机自启动"><a href="#配置开机自启动" class="headerlink" title="配置开机自启动"></a>配置开机自启动</h2><p>编辑 /etc/rc.local 文件<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/rc.<span class="keyword">local</span></div></pre></td></tr></table></figure></p>
-<p>在 exit 0 这一行的上边加入如下<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>ssserver –c <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
-<p>或者 不用配置文件 直接加入命令启动如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/ssserver -p 8388 -k password -m aes-256-cfb <span class="_">-d</span> start</div></pre></td></tr></table></figure></p>
-<p>到此重启服务器后，会自动启动。</p>
-<h2 id="安装和配置shadowsocks客户端"><a href="#安装和配置shadowsocks客户端" class="headerlink" title="安装和配置shadowsocks客户端"></a>安装和配置shadowsocks客户端</h2><p>最新版本的shadowsocks客户端可以从<a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">其Github上下载</a>.<br>客户端配置及使用方法可以<a href="http://www.ishadowsocks.org/" target="_blank" rel="external">参考这里的教程</a>。<br>iPhone及安卓手机上的配置,可以<a href="http://www.jianshu.com/p/08ba65d1f91a" target="_blank" rel="external">参考这个教程</a>。</p>
-<p>需要特别注意的是,在Chrome上需要设置代理为SOCKS v5模式,127.0.0.1:1080,建议安装SwitchySharp扩展. 具体示例可以<a href="http://shadowkong.com/archives/1802" target="_blank" rel="external">参考这里</a>。</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="external">shadowsocks</a><br><a href="https://shadowsocks.org/" target="_blank" rel="external">shadowsocks.org</a><br><a href="https://www.douban.com/note/534175318/" target="_blank" rel="external">教你一步一步自己搭梯子</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">shadowsocks-install-and-optimize</a></p>
-<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>最后的自然是福利。如果没有自己的服务器又想科学上网，可以私信我，我可以共享几个账号供测试使用。</p>
-<p>另外，由于微信限制，文中所有链接均无法显示，请直接点击阅读原文查看。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻墙/">翻墙</a></li></ul>
-	</div>
-
-      
-      
-      
-      <div class="clearfix"></div>
-    </div>
-        
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
     <article id="draft-ubuntu_1604_web_server_config_LEMP" class="article article-type-draft" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -300,6 +185,10 @@
 <p>TL;DR.</p>
 <h1 id="Ubuntu服务器基本设置"><a href="#Ubuntu服务器基本设置" class="headerlink" title="Ubuntu服务器基本设置"></a>Ubuntu服务器基本设置</h1><h2 id="使用root登录服务器"><a href="#使用root登录服务器" class="headerlink" title="使用root登录服务器"></a>使用root登录服务器</h2><p>首先我们需要使用root用户登录服务器,当然你可以选择很多工具,诸如SecureCRT或者putty等。这里通过ssh命令行登录:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">local</span>$ ssh root@SERVER_IP_ADDRESS</div></pre></td></tr></table></figure></p>
 <p>前面的<code>local$</code>表示是在本地机器操作,在服务器端,该提示符会类似<code>root@my-remote-server:~$</code>这种形式,后边会看到。</p>
+<p><em>Tips</em>: 如果使用的是腾讯云，其初始登录默认使用的是用户ubuntu，并不是root。因此，使用<code>ssh ubuntu@your_server_ip</code>登录之后可以修改下root的密码，然后就可以切换到用户root了。</p>
+<p>修改密码命令如下：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ubuntu<span class="variable">@VM-42-158-ubuntu:</span>~$ sudo passwd root</div><div class="line">Enter new UNIX <span class="attribute">password</span>:</div><div class="line">Retype new UNIX <span class="attribute">password</span>:</div><div class="line"><span class="attribute">passwd</span>: password updated successfully</div></pre></td></tr></table></figure></p>
+<p>有可能还需要编辑配置文件<code>/etc/ssh/sshd_config</code>中的<code>PermitRootLogin</code>的设置。</p>
+<p>好了之后就可以使用<code>su</code>切换到root。<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">buntu<span class="variable">@VM-42-158-ubuntu:</span>~$ su</div><div class="line"><span class="attribute">Password</span>:</div><div class="line">root<span class="variable">@VM-42-158-ubuntu</span>:/#</div></pre></td></tr></table></figure></p>
 <h2 id="新增超级用户权限用户"><a href="#新增超级用户权限用户" class="headerlink" title="新增超级用户权限用户"></a>新增超级用户权限用户</h2><p>root用户虽然强大,但是正是由于太强大了,所以显得不够安全,因此通常情况下我们需要创建一个新的用户,然后给他设置超级用户(superuser)权限,这样就可以安全的进行各种操作了。</p>
 <p>使用root用户登录,做如下操作:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@my-remote-server:~$ adduser dennis</div><div class="line">root@my-remote-server:~$ usermod <span class="_">-a</span>G sudo dennis</div></pre></td></tr></table></figure></p>
 <p>这里就将新创建的用户加入了sudo用户组,就具有了超级用户的权限。更详细的信息可以参考<a href="https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos">这个教程</a>。</p>
@@ -728,13 +617,128 @@ new function(){ /* code */ }() //如果没有参数，最后的()就不需要了
 
 
   
+    <article id="post-setup-Shadowsocks-on-ubuntu-1604" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/28/setup-Shadowsocks-on-ubuntu-1604/" class="article-date">
+  	<time datetime="2016-03-28T12:10:00.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/28/setup-Shadowsocks-on-ubuntu-1604/"> 科学上网:ubuntu 16.04服务器上搭建Shadowsocks服务</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>科学上网应该是必备技能了，但是一些免费的方案如goagent等实在是太不稳定。购买自己的服务器，然后自己搭建梯子不失为一种较好的解决方案。本文就来在ubuntu 16.04服务器上使用Shadowsocks搭建自己的科学上网工具。</p>
+<p>Shadowsocks由于政策原因，在百度里是搜不到的，因此本文也随时可能被河蟹，关注公众号(linghucong_wx)以防万一吧！</p>
+<p><img src="http://7xsxyo.com1.z0.glb.clouddn.com/qrcode_for_gh_bf8431032a79_860.jpg" alt=""></p>
+<h2 id="shadowsocks-服务器安装"><a href="#shadowsocks-服务器安装" class="headerlink" title="shadowsocks 服务器安装"></a>shadowsocks 服务器安装</h2><p>更新软件源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div></pre></td></tr></table></figure></p>
+<p>然后安装 PIP 环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-pip</div></pre></td></tr></table></figure></p>
+<p>直接安装 shadowsocks<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip <span class="keyword">install</span> shadowsocks</div></pre></td></tr></table></figure></p>
+<h2 id="运行-shadowsocks-服务器"><a href="#运行-shadowsocks-服务器" class="headerlink" title="运行 shadowsocks 服务器"></a>运行 shadowsocks 服务器</h2><p>启动命令如下：如果要停止运行，将命令中的start改成stop。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -<span class="selector-tag">p</span> <span class="number">8388</span> -k password -m rc4-md5 -d start</div></pre></td></tr></table></figure></p>
+<p>也可以使用配置文件进行配置，方法创建<code>/etc/shadowsocks.json</code>文件，填入如下内容：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"server_port"</span>:<span class="number">8388</span>,</div><div class="line">    <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</div><div class="line">    <span class="attr">"local_port"</span>:<span class="number">1080</span>,</div><div class="line">    <span class="attr">"password"</span>:<span class="string">"mypassword"</span>,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>各字段的含义：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td style="text-align:left">服务器 IP (IPv4/IPv6)，注意这也将是服务端监听的 IP 地址</td>
+</tr>
+<tr>
+<td>server_port</td>
+<td style="text-align:left">服务器端口</td>
+</tr>
+<tr>
+<td>local_port</td>
+<td style="text-align:left">本地端端口</td>
+</tr>
+<tr>
+<td>password</td>
+<td style="text-align:left">用来加密的密码</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td style="text-align:left">超时时间（秒）</td>
+</tr>
+<tr>
+<td>method</td>
+<td style="text-align:left">加密方法，可选择 “bf-cfb”, “aes-256-cfb”, “des-cfb”, “rc4″, 等等。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tips</strong>: 加密方式推荐使用rc4-md5，因为 RC4 比 AES 速度快好几倍，如果用在路由器上会带来显著性能提升。旧的 RC4 加密之所以不安全是因为 Shadowsocks 在每个连接上重复使用 key，没有使用 IV。现在已经重新正确实现，可以放心使用。更多可以看 issue。</p>
+<p><strong>Tips</strong>: 如果需要配置多个用户,可以这样来设置:<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line">    <span class="attr">"port_password"</span>: &#123;</div><div class="line">        <span class="attr">"端口1"</span>: <span class="string">"密码1"</span>,</div><div class="line">        <span class="attr">"端口2"</span>: <span class="string">"密码2"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"timeout"</span>:<span class="number">300</span>,</div><div class="line">    <span class="attr">"method"</span>:<span class="string">"rc4-md5"</span>,</div><div class="line">    <span class="attr">"fast_open"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建完毕后，赋予文件权限：<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod <span class="number">755</span> <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
+<p>为了支持这些加密方式，你要需要安装<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt–<span class="built_in">get</span> install <span class="keyword">python</span>–m2crypto</div></pre></td></tr></table></figure></p>
+<p>然后使用配置文件在后台运行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ssserver -c /etc/shadowsocks<span class="selector-class">.json</span> -d start</div></pre></td></tr></table></figure></p>
+<h2 id="配置开机自启动"><a href="#配置开机自启动" class="headerlink" title="配置开机自启动"></a>配置开机自启动</h2><p>编辑 /etc/rc.local 文件<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi /etc/rc.<span class="keyword">local</span></div></pre></td></tr></table></figure></p>
+<p>在 exit 0 这一行的上边加入如下<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta-keyword">/usr/</span>local<span class="meta-keyword">/bin/</span>ssserver –c <span class="meta-keyword">/etc/</span>shadowsocks.json</div></pre></td></tr></table></figure></p>
+<p>或者 不用配置文件 直接加入命令启动如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/bin/ssserver -p 8388 -k password -m aes-256-cfb <span class="_">-d</span> start</div></pre></td></tr></table></figure></p>
+<p>到此重启服务器后，会自动启动。</p>
+<h2 id="安装和配置shadowsocks客户端"><a href="#安装和配置shadowsocks客户端" class="headerlink" title="安装和配置shadowsocks客户端"></a>安装和配置shadowsocks客户端</h2><p>最新版本的shadowsocks客户端可以从<a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">其Github上下载</a>.<br>客户端配置及使用方法可以<a href="http://www.ishadowsocks.org/" target="_blank" rel="external">参考这里的教程</a>。<br>iPhone及安卓手机上的配置,可以<a href="http://www.jianshu.com/p/08ba65d1f91a" target="_blank" rel="external">参考这个教程</a>。</p>
+<p>需要特别注意的是,在Chrome上需要设置代理为SOCKS v5模式,127.0.0.1:1080,建议安装SwitchySharp扩展. 具体示例可以<a href="http://shadowkong.com/archives/1802" target="_blank" rel="external">参考这里</a>。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/shadowsocks/shadowsocks" target="_blank" rel="external">shadowsocks</a><br><a href="https://shadowsocks.org/" target="_blank" rel="external">shadowsocks.org</a><br><a href="https://www.douban.com/note/534175318/" target="_blank" rel="external">教你一步一步自己搭梯子</a><br><a href="http://wuchong.me/blog/2015/02/02/shadowsocks-install-and-optimize/" target="_blank" rel="external">shadowsocks-install-and-optimize</a></p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>最后的自然是福利。如果没有自己的服务器又想科学上网，可以私信我，我可以共享几个账号供测试使用。</p>
+<p>另外，由于微信限制，文中所有链接均无法显示，请直接点击阅读原文查看。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/翻墙/">翻墙</a></li></ul>
+	</div>
+
+      
+      
+      
+      <div class="clearfix"></div>
+    </div>
+        
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
   
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 令狐葱
+    		&copy; 2017 令狐葱
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
