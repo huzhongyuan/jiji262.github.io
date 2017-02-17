@@ -5,9 +5,9 @@
 # Site
 title: 令狐葱@前端笔记
 subtitle:
-description:
+description: 去留无意，闲看庭前花开花落；宠辱不惊，漫随天外云卷云舒。
 author: 令狐葱
-language:
+language: zh-Hans
 timezone:
 
 # URL
@@ -67,7 +67,9 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
+
+jiathis: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

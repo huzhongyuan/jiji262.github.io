@@ -6,6 +6,9 @@ tags: [Hexo, Github]
 
 ---
 
+### **Update**
+
+[20170117] 将博客theme换成了[Next](https://github.com/iissnan/hexo-theme-next)
 
 ## 系统环境配置
 

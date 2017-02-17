@@ -1,4 +1,4 @@
-title: "手把手教你玩转Rect的flux"
+title: "手把手教你玩转Rect flux"
 layout: post
 date: 2016-11-28 20:10
 comments: true
@@ -34,6 +34,8 @@ npm start
 ```
 
 然后我们就可以通过访问`http://localhost:3000/`来查看结果了。
+
+<!-- more -->
 
 # 使用React实现简单的Todo程序（不带flux）
 
