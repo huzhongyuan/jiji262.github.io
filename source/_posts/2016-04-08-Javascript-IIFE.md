@@ -1,6 +1,6 @@
 title: "Javascript知识点：IIFE - 立即调用函数"
 layout: post
-date: 2016-04-08 20:10
+date: 2016-04-25 20:10
 comments: true
 tags: [前端, IIFE, 前端基础]
 
