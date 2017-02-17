@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>手把手教你玩转Rect的flux | 令狐葱@前端笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文所有代码可以在Github上查看。react-flux-demo
+新建React项目既然有兴趣打开本文，说明你对React的基本开发应该有所了解。我们教程的第一步就是创建一个新的React项目。我们可以使用一些React Boilerplate项目方便的创建一个新的React项目，比如我之前创建的React Boilerplate：
+react_boilerplate
+该React Boile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手把手教你玩转Rect的flux">
+<meta property="og:url" content="http://jiji262.github.io/2016/11/28/introduction-to-react-flux/index.html">
+<meta property="og:site_name" content="令狐葱@前端笔记">
+<meta property="og:description" content="本文所有代码可以在Github上查看。react-flux-demo
+新建React项目既然有兴趣打开本文，说明你对React的基本开发应该有所了解。我们教程的第一步就是创建一个新的React项目。我们可以使用一些React Boilerplate项目方便的创建一个新的React项目，比如我之前创建的React Boilerplate：
+react_boilerplate
+该React Boile">
+<meta property="og:image" content="https://github.com/facebook/flux/raw/master/docs/img/flux-diagram-white-background.png">
+<meta property="og:updated_time" content="2017-02-17T06:31:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手把手教你玩转Rect的flux">
+<meta name="twitter:description" content="本文所有代码可以在Github上查看。react-flux-demo
+新建React项目既然有兴趣打开本文，说明你对React的基本开发应该有所了解。我们教程的第一步就是创建一个新的React项目。我们可以使用一些React Boilerplate项目方便的创建一个新的React项目，比如我之前创建的React Boilerplate：
+react_boilerplate
+该React Boile">
+<meta name="twitter:image" content="https://github.com/facebook/flux/raw/master/docs/img/flux-diagram-white-background.png">
+  
+    <link rel="alternative" href="/atom.xml" title="令狐葱@前端笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">令狐葱</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/IIFE/" style="font-size: 10px;">IIFE</a> <a href="/tags/LEMP/" style="font-size: 10px;">LEMP</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/async/" style="font-size: 10px;">async</a> <a href="/tags/bagpipe/" style="font-size: 10px;">bagpipe</a> <a href="/tags/coverage/" style="font-size: 10px;">coverage</a> <a href="/tags/flux/" style="font-size: 10px;">flux</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 10px;">mocha</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/sinon/" style="font-size: 10px;">sinon</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/前端基础/" style="font-size: 15px;">前端基础</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/服务器配置/" style="font-size: 10px;">服务器配置</a> <a href="/tags/网页爬虫/" style="font-size: 10px;">网页爬虫</a> <a href="/tags/翻墙/" style="font-size: 10px;">翻墙</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">令狐葱</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="https://avatars1.githubusercontent.com/u/168751?v=3&amp;s=460" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">令狐葱</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/jiji262" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://www.weibo.com/jiji262" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/linghucong" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-introduction-to-react-flux" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/28/introduction-to-react-flux/" class="article-date">
+  	<time datetime="2016-11-28T12:10:00.000Z" itemprop="datePublished">2016-11-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手把手教你玩转Rect的flux
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flux/">flux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文所有代码可以在Github上查看。<br><a href="https://github.com/jiji262/react-flux-demo" target="_blank" rel="external">react-flux-demo</a></p>
+<h1 id="新建React项目"><a href="#新建React项目" class="headerlink" title="新建React项目"></a>新建React项目</h1><p>既然有兴趣打开本文，说明你对React的基本开发应该有所了解。我们教程的第一步就是创建一个新的React项目。我们可以使用一些React Boilerplate项目方便的创建一个新的React项目，比如我之前创建的React Boilerplate：</p>
+<p><a href="https://github.com/jiji262/react_boilerplate" target="_blank" rel="external">react_boilerplate</a></p>
+<p>该React Boilerplate的实现过程，可以参考我之前的文章<a href="http://jiji262.github.io/2016/04/29/create-your-own-react-boilerplate/">手把手教你基于ES6架构自己的React Boilerplate项目</a>。</p>
+<p>或者，也可以使用facebook最新推出的一个类似项目：</p>
+<p><a href="https://github.com/facebookincubator/create-react-app" target="_blank" rel="external">create-react-app</a></p>
+<p>我们这里使用<code>facebookincubator/create-react-app</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">npm install -g create-react-app</div><div class="line"></div><div class="line">create-react-app todoApp</div><div class="line">cd todoApp/</div><div class="line">npm start</div></pre></td></tr></table></figure>
+<p>然后我们就可以通过访问<code>http://localhost:3000/</code>来查看结果了。</p>
+<h1 id="使用React实现简单的Todo程序（不带flux）"><a href="#使用React实现简单的Todo程序（不带flux）" class="headerlink" title="使用React实现简单的Todo程序（不带flux）"></a>使用React实现简单的Todo程序（不带flux）</h1><p>我们要实现一个简单的todo程序，可以添加、删除todo条目。</p>
+<h2 id="ListContainer-组件"><a href="#ListContainer-组件" class="headerlink" title="ListContainer 组件"></a>ListContainer 组件</h2><p>首先我们需要一个container用于放置todo列表，命名为<code>ListContainer.js</code>，其内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ListContainer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  state = &#123;</div><div class="line">    list: []</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleAddItem = (newItem) =&gt; &#123;</div><div class="line">    <span class="keyword">var</span> list = <span class="keyword">this</span>.state.list;</div><div class="line">    list.push(newItem);</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      list: list</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleRemoveItem = (index) =&gt; &#123;</div><div class="line">   <span class="keyword">this</span>.state.list.splice(index, <span class="number">1</span>);</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      list: <span class="keyword">this</span>.state.list</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render = () =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className="col-sm-6 col-md-offset-3"&gt;</div><div class="line">        &lt;div className="col-sm-12"&gt;</div><div class="line">          &lt;h3 className="text-center"&gt; Todo List &lt;/h3&gt;</div><div class="line">          &lt;AddItem add=&#123;this.handleAddItem&#125;/&gt;</div><div class="line">          &lt;List items=&#123;this.state.list&#125; remove=&#123;this.handleRemoveItem&#125;/&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>render</code>函数中来组建dom元素显示todo列表，其中<code>AddItem</code>组件是用来新建todo的，<code>List</code>组件用于显示todo列表项。</p>
+<p>在两个响应函数<code>handleAddItem</code>及<code>handleRemoveItem</code>中，通过<code>setState</code>函数来管理state。</p>
+<h2 id="List-组件"><a href="#List-组件" class="headerlink" title="List 组件"></a>List 组件</h2><p>todo列表项显示组件内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">List</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> defaultProps = &#123;</div><div class="line">          items: [],</div><div class="line">          remove: () =&gt; &#123;&#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">      items: React.PropTypes.array.isRequired,</div><div class="line">      remove: React.PropTypes.func.isRequired</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render = () =&gt; &#123;</div><div class="line">    <span class="keyword">var</span> styles = &#123;</div><div class="line">      uList: &#123;</div><div class="line">        paddingLeft: <span class="number">0</span>,</div><div class="line">        listStyleType: <span class="string">"none"</span></div><div class="line">      &#125;,</div><div class="line">      listGroup: &#123;</div><div class="line">        margin: <span class="string">'5px 0'</span>,</div><div class="line">        borderRadius: <span class="number">5</span></div><div class="line">      &#125;,</div><div class="line">      removeItem: &#123;</div><div class="line">        fontSize: <span class="number">20</span>,</div><div class="line">        float: <span class="string">"left"</span>,</div><div class="line">        position: <span class="string">"absolute"</span>,</div><div class="line">        top: <span class="number">12</span>,</div><div class="line">        left: <span class="number">6</span>,</div><div class="line">        cursor: <span class="string">"pointer"</span>,</div><div class="line">        color: <span class="string">"rgb(222, 79, 79)"</span></div><div class="line">      &#125;,</div><div class="line">      todoItem: &#123;</div><div class="line">        paddingLeft: <span class="number">20</span>,</div><div class="line">        fontSize: <span class="number">17</span></div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> listItems = <span class="keyword">this</span>.props.items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>)</span>&#123;</div><div class="line">      <span class="keyword">return</span> (</div><div class="line">        <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;index&#125;</span> <span class="attr">className</span>=<span class="string">"list-group-item"</span> <span class="attr">style</span>=<span class="string">&#123;styles.listGroup&#125;</span>&gt;</span></span></div><div class="line">          <span class="tag">&lt;<span class="name">span</span></span></div><div class="line">            <span class="attr">className</span>=<span class="string">"glyphicon glyphicon-remove"</span></div><div class="line">            <span class="attr">style</span>=<span class="string">&#123;styles.removeItem&#125;</span></div><div class="line">            <span class="attr">onClick</span>=<span class="string">&#123;this.props.remove.bind(null,</span> <span class="attr">index</span>)&#125;&gt;</div><div class="line">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&#123;styles.todoItem&#125;</span>&gt;</span></div><div class="line">            &#123;item&#125;</div><div class="line">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      )</div><div class="line">    &#125;.bind(<span class="keyword">this</span>));</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&#123;styles.uList&#125;</span>&gt;</span></span></div><div class="line">        &#123;listItems&#125;</div><div class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>其中用于删除的图标上的<code>onClick</code>事件会调用父级组件响应的方法，完成删除操作</p>
+<h2 id="AddItem-组件"><a href="#AddItem-组件" class="headerlink" title="AddItem 组件"></a>AddItem 组件</h2><p>添加新的todo项的组件<code>AddItem.js</code>内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">AddItem</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  <span class="keyword">static</span> defaultProps = &#123;</div><div class="line">          add: () =&gt; &#123;&#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">static</span> propTypes = &#123;</div><div class="line">      add: React.PropTypes.func.isRequired</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleSubmit = (e) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span>(e.keyCode === <span class="number">13</span>)&#123;</div><div class="line">      <span class="keyword">var</span> newItem = <span class="keyword">this</span>.myTextInput.value;</div><div class="line">      <span class="keyword">this</span>.myTextInput.value = <span class="string">''</span>;</div><div class="line">      <span class="keyword">this</span>.props.add(newItem);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render = () =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">ref</span>=<span class="string">&#123;(ref)</span> =&gt;</span> this.myTextInput = ref&#125; className="form-control" placeholder="New Item" onKeyDown=&#123;this.handleSubmit&#125;  /&gt;</div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><code>onKeyDown</code>函数处理添加事件的提交，会调用父级组件设置的add方法。</p>
+<h2 id="App-js"><a href="#App-js" class="headerlink" title="App.js"></a>App.js</h2><p>入口文件<code>App.js</code>中引入<code>ListContainer</code>即可：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className="App"&gt;</div><div class="line">        &lt;div className="App-header"&gt;</div><div class="line">          &lt;img src=&#123;logo&#125; className="App-logo" alt="logo" /&gt;</div><div class="line">          &lt;h2&gt;Welcome&lt;/h2&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div className="App-intro"&gt;</div><div class="line">          &lt;div className="row"&gt;</div><div class="line">            &lt;ListContainer /&gt;</div><div class="line">          &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>至此，我们可以通过<code>npm start</code>启动应用程序，然后在浏览器中可以通过访问<code>http://localhost:3000/</code>来查看结果了。</p>
+<p>具体代码请移步Github：<br><a href="https://github.com/jiji262/react-flux-demo/tree/master/todoApp" target="_blank" rel="external">react-flux-demo/todoApp</a></p>
+<h1 id="Flux"><a href="#Flux" class="headerlink" title="Flux"></a>Flux</h1><p>Flux并不是一个库或者框架，可以将其简单的理解为一种软件架构方式。在其官方网站上，其原理图如下：</p>
+<p><img src="https://github.com/facebook/flux/raw/master/docs/img/flux-diagram-white-background.png" alt=""></p>
+<p>一下子看上去比较晦涩，特别是在其官方文档中，涉及多个新的名词，如Views, Stores, Dispatcher Actions, Action Types, Action Creators如此等等，一下子使其更加难以理解。</p>
+<p>但是，真正熟悉之后，你会发现，其实其涉及的核心概念也就下面这么几个：</p>
+<p><strong>Actions</strong>：帮助向Dispatcher传递数据的辅助方法；<br><strong>Dispatcher</strong>：接收action，并且向注册的回调函数广播payloads；<br><strong>Stores</strong>：应用程序状态的容器&amp;并且含有注册到Dispatcher的回调函数；<br><strong>Views</strong>：React组件，从Store获取状态，并将其逐级向下传递给子组件。</p>
+<p>一个重要的特征是，其实现了一个单向的数据流，用于高效的管理state。这就有效的避免了MVC框架中view和model多对多容易出现的各种问题。关于原理的详细介绍，可以参考文后的链接。</p>
+<h2 id="flux架构的实现"><a href="#flux架构的实现" class="headerlink" title="flux架构的实现"></a>flux架构的实现</h2><p>如前所述，Flux是一种架构方式，一种设计思想。因此，Facebook并没有规定其必须如何实现，这也导致其实现版本层出不穷，具体可以参考：</p>
+<p><a href="https://github.com/kriasoft/react-starter-kit/issues/22" target="_blank" rel="external">https://github.com/kriasoft/react-starter-kit/issues/22</a></p>
+<p>其中最为流行的当属Redux，以后再专文详述。<br>本文使用<a href="https://github.com/facebook/flux" target="_blank" rel="external">Facebook提供的flux版本</a>。</p>
+<h1 id="使用flux架构重构Todo程序"><a href="#使用flux架构重构Todo程序" class="headerlink" title="使用flux架构重构Todo程序"></a>使用flux架构重构Todo程序</h1><p>我们将上面实现的React应用简单做些修改，以便理解flux架构的基本概念及设计思想。</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>我们将创建独立的目录来保存<code>stores</code>,<code>actions</code>,<code>dispatcher</code>等。目录结构如下：<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">src</div><div class="line">-<span class="ruby">- actions</span></div><div class="line">-<span class="ruby">- constants</span></div><div class="line">-<span class="ruby">- dispatcher</span></div><div class="line">-<span class="ruby">- stores</span></div><div class="line">-<span class="ruby">- components</span></div></pre></td></tr></table></figure></p>
+<p>其中<code>constants</code>用于保存一些常量，<code>components</code>就是我们的React组件，对应flux架构中的<code>views</code>。</p>
+<h2 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h2><p><code>constants/appConstants.js</code>内容很简单，创建了两个我们需要在action中用到的常量。代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appConstants = &#123;</div><div class="line">  ADD_ITEM: <span class="string">"ADD_ITEM"</span>,</div><div class="line">  REMOVE_ITEM: <span class="string">"REMOVE_ITEM"</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> appConstants</div></pre></td></tr></table></figure>
+<h2 id="Stores"><a href="#Stores" class="headerlink" title="Stores"></a>Stores</h2><p><code>Stores</code>用于集中管理state的变化。<code>stores/todoStore.js</code>文件内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> AppDispatcher <span class="keyword">from</span> <span class="string">'../dispatcher/AppDispatcher'</span>;</div><div class="line"><span class="keyword">import</span> appConstants <span class="keyword">from</span> <span class="string">'../constants/appConstants'</span>;</div><div class="line"><span class="keyword">import</span> &#123;EventEmitter&#125; <span class="keyword">from</span> <span class="string">'events'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> CHANGE_EVENT = <span class="string">'change'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> _store = &#123;</div><div class="line">  list: []</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> addItem = <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">  _store.list.push(item);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> removeItem = <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</div><div class="line">  _store.list.splice(index, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> todoStore = <span class="built_in">Object</span>.assign(&#123;&#125;, EventEmitter.prototype, &#123;</div><div class="line">  addChangeListener: <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.on(CHANGE_EVENT, cb);</div><div class="line">  &#125;,</div><div class="line">  removeChangeListener: <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.removeListener(CHANGE_EVENT, cb);</div><div class="line">  &#125;,</div><div class="line">  getList: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> _store.list;</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中引入<code>events</code>事件机制用于处理<code>store</code>和<code>view</code>之间的事件响应。</p>
+<h2 id="Dispatcher"><a href="#Dispatcher" class="headerlink" title="Dispatcher"></a>Dispatcher</h2><p><code>Dispatcher</code>用于创建一种事件注册分发的机制，可以简单理解为pub/sub模式（严格意义上并不完全是）。<code>dispatcher/AppDispatcher.js</code>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Dispatcher &#125; <span class="keyword">from</span> <span class="string">'flux'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> AppDispatcher = <span class="keyword">new</span> Dispatcher();</div><div class="line"></div><div class="line">AppDispatcher.handleAction = <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.dispatch(&#123;</div><div class="line">    source: <span class="string">'VIEW_ACTION'</span>,</div><div class="line">    action: action</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> AppDispatcher;</div></pre></td></tr></table></figure>
+<p>注册<code>dispatchers</code>的操作一般放在<code>stores</code>里。在<code>stores/todoStore.js</code>文件中:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">AppDispatcher.register(<span class="function"><span class="keyword">function</span>(<span class="params">payload</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> action = payload.action;</div><div class="line">  <span class="keyword">switch</span>(action.actionType)&#123;</div><div class="line">    <span class="keyword">case</span> appConstants.ADD_ITEM:</div><div class="line">      addItem(action.data);</div><div class="line">      todoStore.emit(CHANGE_EVENT);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> appConstants.REMOVE_ITEM:</div><div class="line">      removeItem(action.data);</div><div class="line">      todoStore.emit(CHANGE_EVENT);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h2><p>action就是我们所要做的动作，在我们的示例中就是添加todo项目和删除todo项目。下发事件（dispatcher）的操作就定义在<code>actions/todoActions.js</code>里：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> AppDispatcher <span class="keyword">from</span> <span class="string">'../dispatcher/AppDispatcher'</span>;</div><div class="line"><span class="keyword">import</span> appConstants <span class="keyword">from</span> <span class="string">'../constants/appConstants'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> todoActions = &#123;</div><div class="line">  addItem: <span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</div><div class="line">    AppDispatcher.handleAction(&#123;</div><div class="line">      actionType: appConstants.ADD_ITEM,</div><div class="line">      data: item</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  removeItem: <span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</div><div class="line">    AppDispatcher.handleAction(&#123;</div><div class="line">      actionType: appConstants.REMOVE_ITEM,</div><div class="line">      data: index</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> todoActions</div></pre></td></tr></table></figure>
+<h2 id="components"><a href="#components" class="headerlink" title="components"></a>components</h2><p>在<code>components</code>中就是我们之前创建的React组件了，需要做的修改就是将states的管理部分代码移到了stores里。因此，对<code>components/ListContainer.js</code>文件作如下修改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> AddItem <span class="keyword">from</span> <span class="string">'./AddItem'</span>; </div><div class="line"><span class="keyword">import</span> List <span class="keyword">from</span> <span class="string">'./List'</span>; </div><div class="line"><span class="keyword">import</span> todoStore <span class="keyword">from</span> <span class="string">'../stores/todoStore'</span>;</div><div class="line"><span class="keyword">import</span> todoActions <span class="keyword">from</span> <span class="string">'../actions/todoActions'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">ListContainer</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  state = &#123;</div><div class="line">    list: todoStore.getList()</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentDidMount = () =&gt; &#123;</div><div class="line">    todoStore.addChangeListener(<span class="keyword">this</span>._onChange);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  componentWillUnmount = () =&gt; &#123;</div><div class="line">    todoStore.removeChangeListener(<span class="keyword">this</span>._onChange);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleAddItem = (newItem) =&gt; &#123;</div><div class="line">    todoActions.addItem(newItem);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  handleRemoveItem = (index) =&gt; &#123;</div><div class="line">    todoActions.removeItem(index);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  _onChange = () =&gt; &#123;</div><div class="line">    <span class="keyword">this</span>.setState(&#123;</div><div class="line">      list: todoStore.getList()</div><div class="line">    &#125;)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render = () =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className="col-sm-6 col-md-offset-3"&gt;</div><div class="line">        &lt;div className="col-sm-12"&gt;</div><div class="line">          &lt;h3 className="text-center"&gt; Todo List &lt;/h3&gt;</div><div class="line">          &lt;AddItem add=&#123;this.handleAddItem&#125;/&gt;</div><div class="line">          &lt;List items=&#123;this.state.list&#125; remove=&#123;this.handleRemoveItem&#125;/&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中所有state的状态变化均通过stores来处理。可以看到，在这里<code>handleAddItem</code>和<code>handleRemoveItem</code>分别会触发action里定义的动作，然后就会触发在store里注册好的dispatcher的操作，进而完成对state的更改。<code>_onChange</code>事件通过<code>events</code>事件机制处理store和view间数据的同步。</p>
+<p>至此，所有的代码修改完毕，我们可以通过<code>npm start</code>启动应用程序，然后在浏览器中可以通过访问<code>http://localhost:3000/</code>来查看结果了。</p>
+<p>具体代码请移步Github：<br><a href="https://github.com/jiji262/react-flux-demo/tree/master/todoApp-flux" target="_blank" rel="external">react-flux-demo/todoApp-flux</a></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://github.com/facebook/flux" target="_blank" rel="external">flux offical site</a><br><a href="http://facebook.github.io/flux/docs/overview.html" target="_blank" rel="external">flux documentation</a><br><a href="https://facebook.github.io/react/blog/2014/05/06/flux.html" target="_blank" rel="external">Flux: An Application Architecture for React</a><br><a href="http://www.jackcallister.com/2015/02/26/the-flux-quick-start-guide.html" target="_blank" rel="external">The Flux Quick Start Guide</a><br><a href="https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207" target="_blank" rel="external">A cartoon guide to Flux</a><br><a href="http://blog.andrewray.me/flux-for-stupid-people/" target="_blank" rel="external">Flux For Stupid People</a><br><a href="https://github.com/kriasoft/react-starter-kit/issues/22" target="_blank" rel="external">Which Flux implementation should I use?</a><br><a href="https://scotch.io/tutorials/creating-a-simple-shopping-cart-with-react-js-and-flux" target="_blank" rel="external">Creating A Simple Shopping Cart with React.js and Flux</a><br><a href="https://github.com/ruanyf/extremely-simple-flux-demo" target="_blank" rel="external">ruanyf/extremely-simple-flux-demo</a><br><a href="https://medium.com/@tribou/react-and-flux-for-the-rest-of-us-61f90869d51f#.lpiy12h23" target="_blank" rel="external">Flux: Getting Past the Learning Curve</a><br><a href="https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture" target="_blank" rel="external">Getting To Know Flux, the React.js Architecture</a><br><a href="https://tylermcginnis.com/react-js-tutorial-pt-3-architecting-react-js-apps-with-flux-4657ef831895#.17vrxm44o" target="_blank" rel="external">React.js Tutorial Pt 3: Architecting React.js Apps with Flux.</a></p>
+
+      
+    </div>
+        
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/18/ubuntu_1604_web_server_config_LEMP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你从头搭建Web服务器及LEMP环境(使用Ubuntu16.04+Nginx+MySQL+PHP)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+    <div style="font-size:12px;border-bottom: #ddd 1px solid; BORDER-LEFT: #ddd 1px solid; BACKGROUND: #f6f6f6; HEIGHT: 150px; BORDER-TOP: #ddd 1px solid; BORDER-RIGHT: #ddd 1px solid">
+<div style="MARGIN-TOP: 10px; FLOAT: left; MARGIN-LEFT: 25px; MARGIN-RIGHT: 10px">
+<IMG alt="" src="https://avatars1.githubusercontent.com/u/168751?v=3&s=140" width=90 height=100>
+</div>
+<div style="LINE-HEIGHT: 160%; MARGIN: 10px 20px 0 0; COLOR: #000000">
+本文链接：<a href="">手把手教你玩转Rect的flux</a> <br/>
+作者： 
+<a href="http://jiji262.github.io/">令狐葱</a> <br/>出处： 
+<a href="http://jiji262.github.io/">http://jiji262.github.io/</a>
+<br/>本文基于<a target="_blank" title="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" href="http://creativecommons.org/licenses/by-sa/4.0/"> 知识共享署名-相同方式共享 4.0 </a>
+国际许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名 
+<a href="http://jiji262.github.io/">令狐葱</a>及链接。
+</div>
+</div>
+  
+</article>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="introduction-to-react-flux" data-title="手把手教你玩转Rect的flux" data-url="http://jiji262.github.io/2016/11/28/introduction-to-react-flux/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jiji262"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 令狐葱
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
