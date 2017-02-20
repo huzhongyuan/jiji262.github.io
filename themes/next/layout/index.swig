@@ -2,9 +2,11 @@
 {% import '_macro/post-collapse.swig' as post_template %}
 {% import '_macro/sidebar.swig' as sidebar_template %}
 
-{% block title %} {{ __('title.archive') }} | {{ config.title }} {% endblock %}
+{% block title %} {{ config.title }} {% endblock %}
 
-{% block page_class %} page-archive {% endblock %}
+{% block page_class %}
+  {% if is_home() %} page-home {% endif %}
+{% endblock %}
 
 {% block content %}
 
