@@ -1,3 +1,6 @@
+#wechat_subscriber {
+  color: #ccc;
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -218,12 +221,13 @@ h6 {
   line-height: 1.5;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
+h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin: 20px 0 15px;
+  margin: 20px 0;
 }
 h1 {
   font-size: 22px;
@@ -1162,6 +1166,12 @@ pre .javascript .function {
     text-align: justify;
   }
 }
+.posts-expand .post-body h1 {
+  color: #ed1c24;
+}
+.posts-expand .post-body h2 {
+  color: #f05b47;
+}
 .posts-expand .post-body h2,
 .posts-expand .post-body h3,
 .posts-expand .post-body h4,
@@ -1244,6 +1254,7 @@ pre .javascript .function {
 }
 .posts-collapse .collection-title h2 {
   margin-left: 20px;
+  color: #ed1c24;
 }
 .posts-collapse .collection-title small {
   color: #bbb;
@@ -1298,6 +1309,7 @@ pre .javascript .function {
   font-size: 12px;
   left: 20px;
   top: 5px;
+  color: #f05b47;
 }
 .posts-collapse .post-comments-count {
   display: none;
@@ -1316,6 +1328,10 @@ pre .javascript .function {
   color: #666;
   border-bottom: none;
 }
+.posts-collapse .post-title a:hover {
+  color: #ed1c24;
+  font-weight: bold;
+}
 .page-home .post-type-quote .post-header,
 .page-post-detail .post-type-quote .post-header,
 .page-home .post-type-quote .post-tags,
@@ -1327,6 +1343,7 @@ pre .javascript .function {
   text-align: center;
   word-break: break-word;
   font-weight: 400;
+  color: #ed1c24;
 }
 @media (max-width: 767px) {
   .posts-expand .post-title {
@@ -1821,7 +1838,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e7acad;
+  background: #e4a117;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2668,7 +2685,7 @@ a.search-result {
 .content-wrap {
   float: right;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 0 40px;
   width: 700px;
   background: #fff;
   min-height: 700px;
@@ -2751,7 +2768,7 @@ a.search-result {
 .site-meta {
   padding: 20px 0;
   color: #fff;
-  background: #222;
+  background: #0dc9f7;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .site-meta {
