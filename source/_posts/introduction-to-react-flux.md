@@ -1,4 +1,4 @@
-title: "手把手教你玩转Rect的flux"
+title: "手把手教你玩转 React Flux"
 layout: post
 date: 2016-11-28 20:10
 comments: true
