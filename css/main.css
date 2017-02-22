@@ -189,7 +189,7 @@ th {
 body {
   position: relative;
   font-family: "Georgia", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2;
   color: #555;
   background: #f5f7f9;
@@ -206,7 +206,7 @@ body {
 }
 @media (min-width: 1600px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 h1,
@@ -1130,7 +1130,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: 10px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1159,6 +1159,12 @@ pre .javascript .function {
   .post-body pre .gutter pre,
   .post-body .highlight .gutter pre {
     padding-right: 10px;
+  }
+  .post-body h1 {
+    color: #ed1c24;
+  }
+  .post-body h2 {
+    color: #f05b47;
   }
 }
 @media (min-width: 992px) {
@@ -1219,6 +1225,9 @@ pre .javascript .function {
 @media (max-width: 767px) {
   .posts-collapse {
     margin: 0 20px;
+  }
+  .posts-collapse .post-meta {
+    color: #ed1c24;
   }
   .posts-collapse .post-title,
   .posts-collapse .post-meta {
@@ -1331,6 +1340,7 @@ pre .javascript .function {
 .posts-collapse .post-title a:hover {
   color: #ed1c24;
   font-weight: bold;
+  cursor: pointer;
 }
 .page-home .post-type-quote .post-header,
 .page-post-detail .post-type-quote .post-header,
@@ -1838,7 +1848,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #83423b;
+  background: #9f7c90;
 }
 .links-of-blogroll {
   font-size: 13px;
